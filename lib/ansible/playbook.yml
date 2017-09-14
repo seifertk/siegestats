@@ -1,0 +1,16 @@
+---
+- 
+  hosts: all
+  become: True
+  gather_facts: no
+  pre_tasks:
+    - raw: apt-get install -y python
+  tasks:
+    - name: gather facts
+      setup:
+  vars_files:
+    - vars/vars.yml
+  roles:
+    - vagrant
+    - db
+    - appserver
