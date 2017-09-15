@@ -3,6 +3,9 @@
 ## Getting Started On Windows
 Install Vagrant: https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.msi
 
+Install Virtualbox:
+https://www.virtualbox.org/wiki/Downloads
+
 Copy `.env.example` to `.env` and modify it as needed. Typically you need to
 change the database name to something sensible that matches what's in the
 virtual environment.
@@ -24,6 +27,7 @@ Run `vagrant up` to install & provision the virtual environment.
 - `php artisan db:seed` will run any database seeders
 
 ## Typical Workflow
+0. `vagrant up` if your virtual environment is not running
 1. Check out a feature branch
 2. Write code.
 3. Perform Laravel commands inside your virtual environment via `vagrant ssh`

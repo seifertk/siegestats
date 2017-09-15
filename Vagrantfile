@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "vagrant"
 
   config.vm.provision :ansible_local do |ansible|
-    ansible.playbook = "lib/ansible/vagrant.yml"
+    ansible.playbook = "lib/ansible/playbook.yml"
     # we can specify variables here, which  will take highest priority
     # this saves us from needing to modify vars/vars.yml directly
     ansible.extra_vars = {

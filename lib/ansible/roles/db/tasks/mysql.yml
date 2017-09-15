@@ -1,0 +1,25 @@
+---
+- name: Install mysql
+  apt: pkg=mysql-server
+
+- name: Ensure python-mysqldb is installed
+  apt: pkg=python-mysqldb
+
+- name: Set root user password
+  mysql_user: name=root password="{{mysql_root_password}}"
+  ignore_errors: true
+  notify:
+    - Reload mysql
+
+- name: Copy root my.cnf
+  template: src=my.cnf.j2 dest=/root/.my.cnf
+
+- name: Create application database {{database}}
+  mysql_db: name={{database}} state=present
+  notify: 
+    - Reload mysql
+
+- name: Create test database {{database}}_test
+  mysql_db: name={{database}}_test state=present
+  notify:
+    - Reload mysql

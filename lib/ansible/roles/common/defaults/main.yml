@@ -1,0 +1,8 @@
+---
+# role variables
+common_packages: 
+  - language-pack-en
+  - python-mysqldb
+  - python-pycurl
+  - git
+  - curl

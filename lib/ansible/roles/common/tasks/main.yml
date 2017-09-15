@@ -1,0 +1,13 @@
+---
+- name: Update repositories
+  apt: update_cache=yes
+
+- name: Set timezone
+  copy: src=timezone dest=/etc/timezone mode=0775
+
+- name: Configure timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: Install common packages
+  apt: pkg={{item}}
+  with_items: "{{common_packages}}"

@@ -1,0 +1,20 @@
+---
+- name: Install nginx
+  apt:
+    pkg: nginx
+
+- name: Install nginx site config
+  template:
+    src: server.conf.j2
+    dest: /etc/nginx/sites-available/default
+    mode: 0755
+  notify:
+    - Reload nginx
+
+- name: Disable sendfile for vagrant compatability
+  lineinfile:
+    dest: /etc/nginx/nginx.conf
+    regexp: "sendfile"
+    line: "sendfile off;"
+  notify:
+    - Reload nginx

@@ -1,0 +1,34 @@
+---
+- name: Install ppa for PHP
+  apt_repository:
+    repo: "ppa:ondrej/php"
+    update_cache: yes
+
+- name: Install php{{php_version}} packages
+  apt: pkg={{ item }}
+  with_items: "{{ php_packages | union(php_extensions) }}"
+  notify:
+    - Reload php-fpm
+
+- name: Enable php{{php_version}} extensions
+  shell: phpenmod {{item}}
+  with_items: "{{php_extensions}}"
+  notify:
+    - Reload php-fpm
+
+- name: Install php.ini overrides to php-fpm
+  copy:
+    src: php_overrides.ini
+    dest: /etc/php/{{php_version}}/fpm/conf.d/php_overrides.ini
+  notify:
+    - Reload php-fpm
+
+- name: Install pool configuration for php-fpm
+  copy:
+    src: www.conf
+    dest: /etc/php/{{php_version}}/fpm/pool.d/www.conf
+  notify:
+    - Reload php-fpm
+
+- name: Install composer
+  shell: chdir=/usr/local/bin curl -sS https://getcomposer.org/installer | php -- --filename=composer
