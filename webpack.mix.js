@@ -6,4 +6,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
 mix.copyDirectory('resources/assets/img', 'public/img');
 
-mix.browserSync('localhost');
+mix.browserSync({
+    proxy: "localhost:8000"
+});

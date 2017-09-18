@@ -37,7 +37,7 @@ On your local machine:
 
 ## Common Vagrant commands:
 - `vagrant up` initializes your virtual dev environment
-- `vagrant down` halts the environment
+- `vagrant halt` halts the environment
 - `vagrant reload` restarts the environment
 - `vagrant provision` will run Ansible on the environment to install necessary software
 - `vagrant destroy` will delete the environment
