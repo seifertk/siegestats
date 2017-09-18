@@ -23,6 +23,8 @@ Vagrant will take a while to provision.
 
 You can then run `yarn install` to pull in javascript dependencies.
 
+You may need a `vagrant reload` before you can access the site locally.
+
 ## Accessing the site
 You can use http://localhost:8000
 or, `npm run watch` and use http://localhost:3000
