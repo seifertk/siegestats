@@ -1,8 +1,17 @@
 ---
 - name: Install node ppa
-  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
 - name: Install node
   apt:
     pkg: nodejs
     update_cache: yes
+
+- name: Install yarn globally
+  npm:
+    name: yarn
+    global: yes
+
+- name: Install npm packages via yarn
+  command: yarn install chdir=/vagrant
+  become: "{{vagrant_user}}"

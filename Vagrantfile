@@ -7,13 +7,15 @@ Vagrant.configure(2) do |config|
 
   # Forward port 8000 to share http
   config.vm.network :forwarded_port, guest: 80, host: 8000
+  # forward port 3000 to share browsersync
+  # config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.ssh.forward_agent = true
 
   # Virtualbox specific configuration
   # Enable 2 cores for the virtual machine
   config.vm.provider :virtualbox do |virtualbox, override|
     # Modify the vm's allocated ram
-    virtualbox.memory = 512
+    virtualbox.memory = 1024
     # Set permissions to 777 to fix errors
     override.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
   end

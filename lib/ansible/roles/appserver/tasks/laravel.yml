@@ -1,11 +1,9 @@
 ---
-- name: Install composer packages
-  composer:
-    command: install
-    working_dir: /vagrant
-
-- name: Install npm packages
-  npm: path=/vagrant
+- name: Add task scheduler to cron
+  cron:
+    name="task scheduling for laravel (runs every minute)"
+    state=present
+    job="php /vagrant/artisan schedule:run >> /dev/null 2>&1"
 
 - name: Copy .env.example to .env
   copy:
@@ -14,17 +12,13 @@
     force: no
 
 - name: Generate an app key
-  command: php artisan key:generate
-    chdir: /vagrant
+  command: php artisan key:generate chdir=/vagrant
 
 - name: Clear compiled classes
-  command: php artisan clear-compiled
-    chdir: /vagrant
+  command: php artisan clear-compiled chdir=/vagrant
 
 - name: Optimize laravel
-  command: php artisan optimize
-    chdir: /vagrant
+  command: php artisan optimize chdir=/vagrant
 
-- name: Run laravel setup
-  command: php artisan setup
-    chdir: /vagrant
+# - name: Run laravel setup
+#   command: php artisan setup chdir=/vagrant

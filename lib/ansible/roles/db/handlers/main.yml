@@ -1,3 +1,3 @@
 ---
 - name: Reload mysql
-  service: name=mysql state=reloaded
+  service: name=mysql state=restarted

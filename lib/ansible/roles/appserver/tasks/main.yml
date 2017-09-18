@@ -1,6 +1,6 @@
 ---
 - include: adminer.yml
-- include: node.yml
+#- include: node.yml
 - include: nginx.yml
 - include: php.yml
 - include: laravel.yml

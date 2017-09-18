@@ -4,9 +4,3 @@
 
 - name: Add composer bin to bashrc
   lineinfile: dest=/home/{{vagrant_user}}/.bashrc line="PATH=/vagrant/vendor/bin:$PATH"
-
-- name: Add task scheduler to cron
-  cron:
-    name="task scheduling for laravel (runs every minute)"
-    state=present
-    job="php /vagrant/artisan schedule:run >> /dev/null 2>&1"

@@ -1,0 +1,9 @@
+---
+- name: Install composer
+  shell: chdir=/usr/local/bin curl -sS https://getcomposer.org/installer | php -- --filename=composer
+
+- name: Install composer packages
+  composer:
+    command: install
+    working_dir: /vagrant
+  become: "{{vagrant_user}}"

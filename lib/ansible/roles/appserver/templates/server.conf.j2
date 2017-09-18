@@ -1,0 +1,27 @@
+server {
+  server_name localhost;
+  root /vagrant/public;
+  index index.php;
+
+  client_max_body_size 8M;
+
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  location ~* \.php$ {
+      fastcgi_pass    unix:/var/run/php/php{{ php_version }}-fpm.sock;
+    fastcgi_index       index.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    include             /etc/nginx/fastcgi_params;
+    fastcgi_param       SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  }
+
+  location /adminer {
+      fastcgi_pass    unix:/var/run/php/php{{ php_version }}-fpm.sock;
+    fastcgi_index       adminer.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    include             /etc/nginx/fastcgi_params;
+    fastcgi_param       SCRIPT_FILENAME /var/adminer/adminer.php;
+  }
+}

@@ -29,6 +29,3 @@
     dest: /etc/php/{{php_version}}/fpm/pool.d/www.conf
   notify:
     - Reload php-fpm
-
-- name: Install composer
-  shell: chdir=/usr/local/bin curl -sS https://getcomposer.org/installer | php -- --filename=composer

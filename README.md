@@ -1,16 +1,39 @@
 # Rainbow Six Siege: Stats
 
 ## Getting Started On Windows
-Install Vagrant: https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.msi
+Install Vagrant: 
+https://releases.hashicorp.com/vagrant/2.0.0/vagrant_2.0.0_x86_64.msi
 
 Install Virtualbox:
 https://www.virtualbox.org/wiki/Downloads
+
+Install NodeJS 8.x:
+https://nodejs.org/en/download/current/
+
+Install Yarn:
+`npm install -g yarn`
 
 Copy `.env.example` to `.env` and modify it as needed. Typically you need to
 change the database name to something sensible that matches what's in the
 virtual environment.
 
 Run `vagrant up` to install & provision the virtual environment.
+
+Vagrant will take a while to provision.
+
+You can then run `yarn install` to pull in javascript dependencies.
+
+## Accessing the site
+You can use http://localhost:8000
+or, `npm run watch` and use http://localhost:3000
+
+## Adding Composer packages
+Inside the VM (`vagrant ssh`)
+`composer install [author/package]`
+
+## Adding javascript packages
+On your local machine:
+`yarn install [package]`
 
 ## Common Vagrant commands:
 - `vagrant up` initializes your virtual dev environment
