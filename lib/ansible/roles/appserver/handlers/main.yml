@@ -1,6 +1,6 @@
 ---
 - name: Reload nginx
-  service: name=nginx state=reloaded
+  service: name=nginx state=restarted
 
 - name: Reload php-fpm
-  service: name=php{{php_version}}-fpm state=reloaded
+  service: name=php{{php_version}}-fpm state=restarted
