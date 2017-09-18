@@ -65,6 +65,7 @@
         </style>
     </head>
     <body>
+        <example id="app"></example>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -93,3 +94,4 @@
         </div>
     </body>
 </html>
+<script src="/js/app.js"></script>
