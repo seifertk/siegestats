@@ -3,4 +3,5 @@
 #- include: node.yml
 - include: nginx.yml
 - include: php.yml
+- include: composer.yml
 - include: laravel.yml
