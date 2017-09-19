@@ -5,6 +5,14 @@
                 Siege Stats
             </a>
         </div>
-        <a href="{{ route('signin') }}" class="btn btn-default navbar-btn">Sign in</a>
+
+        <div class="top-right links">
+            @auth
+                <a href="{{ url('/home') }}">Home</a>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-default navbar-btn">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-default navbar-btn">Register</a>
+            @endauth
+        </div>
     </div>
 </div>
