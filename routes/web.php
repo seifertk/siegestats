@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/signin', function() {
-    return view('user.signin');
-})->name('signin');
+Auth::routes();
