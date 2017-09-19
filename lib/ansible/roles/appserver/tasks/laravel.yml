@@ -21,7 +21,7 @@
   command: php artisan optimize chdir=/vagrant
 
 - name: Run laravel migrations and seeds
-  command: php artisan migrate:refresh --seed
+  command: php artisan migrate:refresh --seed chdir=/vagrant
 
 # - name: Run laravel setup
 #   command: php artisan setup chdir=/vagrant
