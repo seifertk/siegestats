@@ -9,3 +9,10 @@
     url: http://www.adminer.org/latest.php
     dest: /var/adminer/adminer.php
     mode: 0440
+
+- name: Set Adminer permissions
+  file:
+    path: /var/adminer/adminer.php
+    owner: www-data
+    group: www-data
+    mode: 0440
