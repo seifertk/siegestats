@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title', 'Register')
+
 @section('content')
     <h1>Register</h1>
     <form class="form-horizontal" role="form" method="POST" action="/login">
