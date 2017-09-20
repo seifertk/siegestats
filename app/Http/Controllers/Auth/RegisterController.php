@@ -72,4 +72,9 @@ class RegisterController extends Controller
     protected function showRegistrationForm() {
         return view ('user.register');
     }
+
+    protected function logout() {
+        Session::flush(); 
+        return Redirect::to('/');
+    }
 }

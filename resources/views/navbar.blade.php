@@ -1,18 +1,44 @@
 <div class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ route('index') }}">
-                Siege Stats
-            </a>
-        </div>
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <b>Siege Stats</b>
+            </a>
+
+            @if($user = Auth::user())
+                <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    User Statistics <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                            <li><a>General</a></li>
+                            <li><a>Operators</a></li>
+                            <li><a>Weapon Stats</a></li>
+                </ul>
+            @endif
+        </div>    
+
+        <div class="collapse navbar-collapse navbar-right" id="app-navbar-collapse">
+            <ul class="nav navbar-nav">
+                @if($user = Auth::user())
+                    <form role="form" method="POST" action="/logout">
+                        {{ csrf_field() }}
+                        <button type="submit">Logout</button>
+                    </form>
+                @else
                 <a href="{{ route('login') }}" class="btn btn-default navbar-btn">Login</a>
                 <a href="{{ route('register') }}" class="btn btn-default navbar-btn">Register</a>
-            @endauth
+                @endif
+            </ul>
         </div>
+
+
     </div>
 </div>

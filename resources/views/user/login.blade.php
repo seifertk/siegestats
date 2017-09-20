@@ -5,6 +5,7 @@
 @section('content')
     <h1>Login</h1>
     <form class="form-horizontal" role="form" method="POST" action="/login">
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
