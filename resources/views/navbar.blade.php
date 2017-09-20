@@ -28,9 +28,14 @@
         <div class="collapse navbar-collapse navbar-right" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
                 @if($user = Auth::user())
-                    <form role="form" method="POST" action="/logout">
+                    <form id="logout-form" role="form" method="POST" action="/logout">
                         {{ csrf_field() }}
-                        <button type="submit">Logout</button>
+                        <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" ria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user aria-hidden="true""></span> {{ Auth::guard('web')->user()->email }} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><button type="submit">Logout</button></li>
+                        </ul>
                     </form>
                 @else
                 <a href="{{ route('login') }}" class="btn btn-default navbar-btn">Login</a>
