@@ -34,7 +34,7 @@
                             <span class="glyphicon glyphicon-user aria-hidden="true""></span> {{ Auth::guard('web')->user()->email }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><button type="submit">Logout</button></li>
+                            {!! Form::submit('Logout', ['class' => 'btn']) !!}
                         </ul>
                     {!! Form::close() !!}
                 @else
