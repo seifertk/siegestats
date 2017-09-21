@@ -27,7 +27,7 @@
 
         <div class="collapse navbar-collapse navbar-right" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
-                @if($user = Auth::user())
+                @if(Auth::user())
                     {!! Form::open(['route' => 'logout', 'method' => 'post', 'id' => 'form-logout']) !!}
                     {!! Form::token() !!}
                         <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" ria-haspopup="true" aria-expanded="false">
