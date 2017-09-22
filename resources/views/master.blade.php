@@ -12,8 +12,12 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="/css/app.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/master.css"/>
     </head>
     <body>
+        <video width="100%" height="100%" autoplay loop id="bg_vid">
+            <source src="{{asset('img/background.mp4')}}" type="video/mp4"/>
+        </video>
         @include('navbar')
 
         <div class="container">
