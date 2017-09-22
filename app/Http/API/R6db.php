@@ -7,15 +7,15 @@ class R6db {
     protected $APP_ID = 'Boostin';
 
     public function getPlayers($name) {
-        $curlHandle = curl_init($URL . 'players?name=' . $name);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $APP_ID]);
+        $curlHandle = curl_init($this->URL . '/players?name=' . $name);
+        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $this->APP_ID]);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
     }
 
     public function getPlayer($id) {
-        $curlHandle = curl_init($URL . 'players/' . $id);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $APP_ID]);
+        $curlHandle = curl_init($this->URL . '/players/' . $id);
+        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $this->APP_ID]);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
     }
