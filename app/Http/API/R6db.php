@@ -5,7 +5,7 @@ namespace App\Http\Api;
 /**
  *  This class provides access to the R6db API using our unique x-app-id
  *
- *  NTOE: All GET requests must contain our x-app-id 
+ *  NOTE: All GET requests must contain our x-app-id 
  */
 class R6db {
     protected $URL = 'https://r6db.com/api/v2';
