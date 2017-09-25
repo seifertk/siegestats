@@ -4,6 +4,7 @@
 
 @section('content')
     {!! Form::open(['route' => 'login', 'method' => 'post', 'id' => 'form-login', 'class' => 'form-horizontal transparent']) !!}
+    <div class="panel semi-transparent">
         <h1>Login</h1>
         {!! Form::token() !!}
         <div class="form-group">
@@ -25,5 +26,6 @@
                 {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
+    </div>
     {!! Form::close() !!}
 @endsection
