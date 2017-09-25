@@ -16,3 +16,6 @@ Route::get('/', function () {
 })->name('index');
 
 Auth::routes();
+
+Route::get('/player', 'PlayerController@show');
+Route::post('/player/search', 'PlayerController@search')->name('search');
