@@ -8,14 +8,53 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+
 html, body {
-    background-color: #fff;
-    color: #636b6f;
+    color: #555;
     font-family: 'Raleway', sans-serif;
+    font-size: 1.05em;
     font-weight: 100;
     height: 100vh;
     margin: 0;
 }
+
+video#bg_vid { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover; 
+  }
+
+  .header{
+    padding: 1%;
+  }
+
+  .header img {
+    float: left;
+    width: 10%;
+    height: auto;
+    background: #555;
+  }
+  
+  .header h1 {
+    position: relative;
+    text-align: center;
+    display: flex;
+    font-weight: strong;
+    color: #555;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
 
 .full-height {
     height: 100vh;
@@ -57,4 +96,13 @@ html, body {
 
 .m-b-md {
     margin-bottom: 30px;
+}
+
+.transparent, .transparent h1 {
+    background-color: rgba(0, 0, 0, 0.0);
+    color:#ffffff;
+}
+
+.form-control {
+    font-weight: bold;
 }

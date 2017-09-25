@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Siege Stats | @yield('title')</title>
+        <link rel="icon" href="{{asset('img/tab_image.png')}}"/>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -14,6 +15,9 @@
         <link rel="stylesheet" type="text/css" href="/css/app.css"/>
     </head>
     <body>
+        <video width="100%" height="100%" autoplay loop id="bg_vid">
+            <source src="{{asset('img/background.mp4')}}" type="video/mp4"/>
+        </video>
         @include('navbar')
 
         <div class="container">
