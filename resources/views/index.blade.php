@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel transparent">
+            <div class="panel semi-transparent transparent">
                 <div class="header">
                     <img src="{{asset('img/tab_image.png')}}" alt="Logo">
                     <h1>Welcome to Siege Stats!</h1>
