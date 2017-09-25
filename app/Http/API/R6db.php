@@ -17,8 +17,8 @@ class R6db {
      * @param   string  $name
      * @return  json    Array of 'basic' player objects    
      */
-    public function getPlayers($name) {
-        $curlHandle = curl_init($this->URL . '/players?name=' . $name);
+    public function getPlayers($name, $platform) {
+        $curlHandle = curl_init($this->URL . '/players?name=' . $name . '&platform='. $platform);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $this->APP_ID]);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);

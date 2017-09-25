@@ -10,6 +10,7 @@
             {!! Form::label('name', 'Account Name', ['class' => 'col-md-4 control-label']) !!}
             <div class="col-md-6">
                 {!! Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Username']) !!}
+                {!! Form::select('platform', ['pc' => 'PC', 'ps4' => 'PS4', 'xbox' => 'Xbox One'], 'pc', ['placeholder' => 'Choose a platform...']); !!}
             </div>
         </div>   
     {!! Form::close() !!}
