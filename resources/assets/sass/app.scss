@@ -97,3 +97,12 @@ video#bg_vid {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+.transparent, .transparent h1 {
+    background-color: rgba(0, 0, 0, 0.0);
+    color:#ffffff;
+}
+
+.form-control {
+    font-weight: bold;
+}

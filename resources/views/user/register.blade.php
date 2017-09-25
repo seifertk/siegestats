@@ -3,8 +3,8 @@
 @section('title', 'Register')
 
 @section('content')
-    <h1>Register</h1>
-    {!! Form::open(['route' => 'register', 'method' => 'post', 'id' => 'form-register', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['route' => 'register', 'method' => 'post', 'id' => 'form-register', 'class' => 'form-horizontal transparent']) !!}
+        <h1>Register</h1>
         {!! Form::token() !!}
         <div class="form-group">
         {!! Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 control-label']) !!}
