@@ -12,9 +12,10 @@ class R6db {
     protected $APP_ID = 'Boostin';
 
     /**
-     * Searches for players by name
+     * Searches for players by name and platform
      *
      * @param   string  $name
+     * @param   string  $platform
      * @return  json    Array of 'basic' player objects    
      */
     public function getPlayers($name, $platform) {
