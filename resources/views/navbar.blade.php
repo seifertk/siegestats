@@ -26,6 +26,28 @@
             @endif
         </div>    
 
+        <div class="navbar-form navbar-left form-group">
+            {!! Form::open(['route' => 'search', 'method' => 'post', 'id' => 'form-search', 'class' => 'form-horizontal', 'autocomplete' => 'off']) !!}
+                {!! Form::token() !!}
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <select class="btn btn-default form-control" name="platform">
+                            <option value="pc">PC</option>
+                            <option value="ps4">PS4</option>
+                            <option value="xbox">Xbox One</option>
+                        </select>
+                    </span>
+                    <!-- {!! Form::select('platform', ['pc' => 'PC', 'ps4' => 'PS4', 'xbox' => 'Xbox One'], 'pc', ['class' => 'form-control', 'placeholder' => 'Choose a platform...']); !!} -->
+                    {!! Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Username']) !!}
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            {!! Form::close() !!}
+        </div>
+
         <div class="collapse navbar-collapse navbar-right" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
                 @if(Auth::user())
@@ -44,7 +66,6 @@
                 @endif
             </ul>
         </div>
-
 
     </div>
 </div>

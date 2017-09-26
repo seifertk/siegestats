@@ -3,8 +3,9 @@
 @section('title', 'Login')
 
 @section('content')
-    <h1>Login</h1>
-    {!! Form::open(['route' => 'login', 'method' => 'post', 'id' => 'form-login', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['route' => 'login', 'method' => 'post', 'id' => 'form-login', 'class' => 'form-horizontal transparent']) !!}
+    <div class="panel semi-transparent">
+        <h1>Login</h1>
         {!! Form::token() !!}
         <div class="form-group">
             {!! Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 control-label']) !!}
@@ -25,7 +26,6 @@
                 {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
-        
-
+    </div>
     {!! Form::close() !!}
 @endsection

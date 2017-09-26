@@ -8,18 +8,19 @@ namespace App\Http\Api;
  *  NOTE: All GET requests must contain our x-app-id 
  */
 class R6db {
-    protected $URL = 'https://r6db.com/api/v2';
-    protected $APP_ID = 'Boostin';
+    protected static $URL = 'https://r6db.com/api/v2';
+    protected static $APP_ID = 'Boostin';
 
     /**
-     * Searches for players by name
+     * Searches for players by name and platform
      *
      * @param   string  $name
+     * @param   string  $platform
      * @return  json    Array of 'basic' player objects    
      */
-    public function getPlayers($name) {
-        $curlHandle = curl_init($this->URL . '/players?name=' . $name);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $this->APP_ID]);
+    public static function getPlayers($name, $platform) {
+        $curlHandle = curl_init(R6db::$URL . '/players?name=' . $name . '&platform='. $platform);
+        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . R6db::$APP_ID]);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
     }
@@ -30,9 +31,9 @@ class R6db {
      * @param   string  $id
      * @return  json    'Detailed' player json object
      */
-    public function getPlayer($id) {
-        $curlHandle = curl_init($this->URL . '/players/' . $id);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . $this->APP_ID]);
+    public static function getPlayer($id) {
+        $curlHandle = curl_init(R6db::$URL . '/players/' . $id);
+        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . R6db::$APP_ID]);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
     }
@@ -40,7 +41,7 @@ class R6db {
     /**
      *  Testing the route manually is getting me nothing
      */
-    public function getLeaderboard() {
+    public static function getLeaderboard() {
 
     }
 }

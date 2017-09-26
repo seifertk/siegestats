@@ -97,3 +97,22 @@ video#bg_vid {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+// Used for div and children to make them transparent
+.transparent, .transparent h1 {
+    background-color: rgba(0, 0, 0, 0.0);
+    color:#ffffff;
+}
+
+//used for div to make it semi-transparent (Used with Panel class)
+.semi-transparent
+{
+    background-color: rgba(0, 0, 0, 0.3);
+    color:#ffffff;
+    border-color: rgba(0,0,0,0.0);
+    padding: 1%;
+}
+
+.form-control {
+    font-weight: bold;
+}
