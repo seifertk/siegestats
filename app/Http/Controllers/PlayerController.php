@@ -12,9 +12,8 @@ class PlayerController extends Controller
     {
         $name = $request->input('name');
         $platform = $request->input('platform');
-
-        $api = new R6db();
-        $search = json_decode($api->getPlayers($name, $platform));
+        
+        $search = json_decode(R6db::getPlayers($name, $platform));
 
         if(count($search) > 1) {
             dd(count($search) . " Found");
