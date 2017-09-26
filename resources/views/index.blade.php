@@ -8,6 +8,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel semi-transparent transparent">
+                @if(Session::has('message'))
+                <p class="alert alert-info">{{ Session::get('message') }}</p>
+                @endif
                 <div class="header">
                     <img src="{{asset('img/tab_image.png')}}" alt="Logo">
                     <h1>Welcome to Siege Stats!</h1>
