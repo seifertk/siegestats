@@ -8,9 +8,13 @@
 
     @foreach ($players as $player)
         <p>
-            <h2>Name:    {{$player->name}}</h2>
-            <h2>ID:      {{$player->id}}</h2>
-            <h2>Level:    {{$player->level}}</h2>
+            <h4>name:     {{$player->name}}</h4>
+            <ul>
+                <li><b>id :</b>       {{$player->id}}</li>
+                <li><b>userId :</b>   {{$player->userId}}</li>
+                <li><b>level :</b>    {{$player->level}}</li>
+            </ul>
+            
         </p>
         <br/>
     @endforeach
