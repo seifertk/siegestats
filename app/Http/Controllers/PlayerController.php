@@ -27,6 +27,7 @@ class PlayerController extends Controller
 
     public function show($id)
     {
-        return view('player.profile', ['id' => $id]);
+        $player = R6db::getPlayer($id);
+        return view('player.profile', ['player' => $player]);
     }
 }
