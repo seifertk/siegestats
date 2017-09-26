@@ -40,7 +40,7 @@ class R6db
     public static function getPlayer($id)
     {
         return Cache::remember("r6db_getplayer_$id", static::CACHE_TIME, function() use ($id) {
-            return static::fetchJson(static::URL . "/players/$id");
+            return static::fetchJson(static::URL . "/players/$id", static::HEADERS);
         });
     }
 
