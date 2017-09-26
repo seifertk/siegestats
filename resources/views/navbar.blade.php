@@ -26,7 +26,7 @@
         </div>    
 
         <div class="navbar-form navbar-left form-group">
-            {!! Form::open(['route' => 'search', 'method' => 'post', 'id' => 'form-search', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => 'search', 'method' => 'post', 'id' => 'form-search', 'class' => 'form-horizontal', 'autocomplete' => 'off']) !!}
                 {!! Form::token() !!}
                 <div class="input-group">
                     <span class="input-group-btn">
