@@ -12,22 +12,21 @@ class PlayerController extends Controller
     {
         $name = $request->input('name');
         $platform = $request->input('platform');
-        
-        $search = json_decode(R6db::getPlayers($name, $platform));
+        $results = json_decode(R6db::getPlayers($name, $platform));
 
-        if(count($search) > 1) {
-            dd(count($search) . " Found");
-        } elseif (count($search) == 0) {
+        if(count($results) > 1) {
+            return view('player.index', ['players' => $results]);
+        } elseif (count($results) == 0) {
             Session::flash('message', 'No players found with the name – ' . $name);
             return redirect()->route('index');
-        } 
+        }
 
         return redirect()->route('profile', ['id' => 3]);
     }
 
     public function show($id)
     {
-        Session::flash('message', $id);        
+        Session::flash('message', $id);
         return view('player.profile');
     }
 }
