@@ -22,6 +22,7 @@
                             <li><a>Operators</a></li>
                             <li><a>Weapon Stats</a></li>
                 </ul>
+                <a href="{{ route('versions') }}" class="navbar-brand" role="button" aria-haspopup="true" aria-expanded="false">Developer Notes</a>
             @endif
         </div>    
 
