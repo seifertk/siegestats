@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu">
                             <li><a>General</a></li>
-                            <li><a>Operators</a></li>
+                            <li><a href="{{ route('operatorstats') }}">Operators</a></li>
                             <li><a>Weapon Stats</a></li>
                 </ul>
             @endif

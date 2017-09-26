@@ -30,4 +30,12 @@ class PlayerController extends Controller
         $player = R6db::getPlayer($id);
         return view('player.profile', ['player' => $player]);
     }
+
+    public function operatorstats()
+    {
+        $arr = json_decode(R6db::getPlayer('7d7ac237-a3da-45d3-9e41-6ed133a2d63c'),TRUE)['stats']['operator'];
+        ksort($arr);
+        //dd($arr);
+        return view('player.operatorstats', compact('arr'));
+    }
 }
