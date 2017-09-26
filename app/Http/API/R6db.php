@@ -2,14 +2,20 @@
 
 namespace App\Http\Api;
 
+use App\Http\Api\Traits\FetchJson;
+use Illuminate\Support\Facades\Cache;
+
 /**
  *  This class provides access to the R6db API using our unique x-app-id
  *
  *  NOTE: All GET requests must contain our x-app-id 
  */
-class R6db {
-    protected static $URL = 'https://r6db.com/api/v2';
-    protected static $APP_ID = 'Boostin';
+class R6db
+{
+    use FetchJson;
+    const URL = 'https://r6db.com/api/v2';
+    const HEADERS = ['x-app-id: Boostin'];
+    const CACHE_TIME = 15;
 
     /**
      * Searches for players by name and platform
@@ -18,11 +24,11 @@ class R6db {
      * @param   string  $platform
      * @return  json    Array of 'basic' player objects    
      */
-    public static function getPlayers($name, $platform) {
-        $curlHandle = curl_init(R6db::$URL . '/players?name=' . $name . '&platform='. $platform);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . R6db::$APP_ID]);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        return curl_exec($curlHandle);
+    public static function getPlayers(string $name, string $platform)
+    {
+        return Cache::remember("r6db_getplayers_${name}_${platform}", static::CACHE_TIME, function() use ($name, $platform) {
+            return static::fetchJson(static::URL . "/players?name=${name}&platform=${platform}", static::HEADERS);
+        });
     }
 
     /**
@@ -31,17 +37,18 @@ class R6db {
      * @param   string  $id
      * @return  json    'Detailed' player json object
      */
-    public static function getPlayer($id) {
-        $curlHandle = curl_init(R6db::$URL . '/players/' . $id);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json', 'x-app-id: ' . R6db::$APP_ID]);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        return curl_exec($curlHandle);
+    public static function getPlayer($id)
+    {
+        return Cache::remember("r6db_getplayer_$id", static::CACHE_TIME, function() use ($id) {
+            return static::fetchJson(static::URL . "/players/$id");
+        });
     }
 
     /**
      *  Testing the route manually is getting me nothing
      */
-    public static function getLeaderboard() {
-
+    public static function getLeaderboard()
+    {
+        //
     }
 }
