@@ -1,3 +1,11 @@
-@if(Session::has('message'))
-<p class="alert alert-info">{{ Session::get('message') }}</p>
-@endif
+@extends('master')
+
+@section('title', 'Player Profile')
+
+@section('content')
+
+<div class="panel panel-default">
+    Player Profile {{ $id }}
+</div>
+
+@endsection

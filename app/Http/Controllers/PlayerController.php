@@ -21,12 +21,12 @@ class PlayerController extends Controller
             return redirect()->route('index');
         }
 
-        return redirect()->route('profile', ['id' => 3]);
+        $id = $results[0]->id;
+        return redirect()->route('profile', ['id' => $id]);
     }
 
     public function show($id)
     {
-        Session::flash('message', $id);
-        return view('player.profile');
+        return view('player.profile', ['id' => $id]);
     }
 }
