@@ -6,7 +6,7 @@ namespace App\Http\Api;
  *  This class provides access to the R6stats API
  */
  class R6stats {
-    protected $URL = 'https://api.r6stats.com/api/v1';
+    protected static $URL = 'https://api.r6stats.com/api/v1';
 
     /**
     * Fetches some basic operator properites: name, role, ctu, figure, badge, bust
@@ -14,8 +14,8 @@ namespace App\Http\Api;
     *
     * @return   json    Array of operators 
     */
-    public function getOperators() {
-        $curlHandle = curl_init($this->URL . '/database/operators');
+    public static function getOperators() {
+        $curlHandle = curl_init(R6stats::$URL . '/database/operators');
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
@@ -27,8 +27,8 @@ namespace App\Http\Api;
     *
     * @return   json    Array of weapons 
     */
-    public function getWeapons() {
-        $curlHandle = curl_init($this->URL . '/database/weapons');
+    public static function getWeapons() {
+        $curlHandle = curl_init(R6stats::$URL . '/database/weapons');
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);
@@ -39,8 +39,8 @@ namespace App\Http\Api;
     * 
     * @return   json    Player object 
     */
-    public function getPlayer($name, $platform="uplay") {
-        $curlHandle = curl_init($this->URL . '/players/' . $name . '?platform=' .$platform);
+    public static function getPlayer($name, $platform="uplay") {
+        $curlHandle = curl_init(R6stats::$URL . '/players/' . $name . '?platform=' .$platform);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         return curl_exec($curlHandle);

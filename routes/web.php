@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/player', 'PlayerController@show');
-Route::post('/player/search', 'PlayerController@search')->name('search');
+// Route::get('/search', 'PlayerController@showSearch');
+Route::get('/player/{id}', 'PlayerController@show')->name('profile');
+Route::post('/search', 'PlayerController@search')->name('search');
