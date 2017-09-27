@@ -20,13 +20,14 @@ class UserController extends Controller
     {
         //dd($request->input('player_id'));
         $playerid = $request->input('player_id');
+        $playername = $request->input('player_name');
         $user = Auth::user();
         $user->user_id = $playerid;
         $user->update();
 
         //DB::table('users')->where('id', $user->id)->update(['user_id' => $playerid]);
 
-        Session::flash('message', 'User ' . $user->name . ' successfully linked with Player ' . $playerid);
+        Session::flash('message', 'User ' . $user->email . ' successfully linked with Player ' . $playername);
 
         return redirect()->route('index');
     }

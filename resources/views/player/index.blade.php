@@ -14,6 +14,7 @@
                 <li><b>level :</b>     {{$player->level}}</li>
             </ul>
             {!! Form::hidden('player_id', $player->userId) !!}
+            {!! Form::hidden('player_name', $player->name) !!}
             {!! Form::submit('Link This Account', ['class' => 'btn btn-primary']) !!}
         <hr/>
         <br/>
