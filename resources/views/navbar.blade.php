@@ -9,20 +9,23 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="{{ route('index') }}">
-                <b>Siege Stats</b>
+            <a href="#" style="font-weight: bold" class="navbar-brand dropdown-toggle" data-toggle="collapse" data-target="#statsdropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Siege Stats<span class="caret"></span>
             </a>
+            <ul id="statsdropdown" class="dropdown-menu">
+                <li><a href="{{ route('index') }}">Home</a></li>
+                <li><a href="{{ route('versions') }}">Developer Notes</a></li>
+            </ul>
 
             @if(Auth::user())
-                <a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="navbar-brand dropdown-toggle" data-toggle="collapse" data-target="#userstatsdropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     User Statistics <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
+                <ul id="userstatsdropdown" class="dropdown-menu">
                             <li><a>General</a></li>
                             <li><a>Operators</a></li>
                             <li><a>Weapon Stats</a></li>
                 </ul>
-                <a href="{{ route('versions') }}" class="navbar-brand" role="button" aria-haspopup="true" aria-expanded="false">Developer Notes</a>
             @endif
         </div>    
 
