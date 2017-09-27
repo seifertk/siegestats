@@ -20,3 +20,8 @@ Auth::routes();
 // Route::get('/search', 'PlayerController@showSearch');
 Route::get('/player/{id}', 'PlayerController@show')->name('profile');
 Route::post('/search', 'PlayerController@search')->name('search');
+
+// Versions Page Route
+Route::get('/versions', function() {
+    return view('versions');
+})->name('versions');
