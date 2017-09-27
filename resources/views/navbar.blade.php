@@ -16,7 +16,7 @@
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('versions') }}">Developer Notes</a></li>
                 @if(Auth::user())
-                <li><a href="{{ route('player_home') }}">My Home</a></li>
+                <li><a href="{{ route('player_home') }}">My Profile</a></li>
                 @endif
             </ul>
 
