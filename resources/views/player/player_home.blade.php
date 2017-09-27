@@ -3,14 +3,13 @@
 @section('title', 'Player Home')
 
 @section('content')
+    <div class="panel panel-default semi-transparent">
+
     @if(Auth::guard('web')->user()->user_id == null)
-        <div class="panel panel-default">
-            <h1>Oops, no email is linked to this account </h1>
-        </div>
+        <h1>Oops, no email is linked to this account </h1>
     @else
-        <div class="panel panel-default">
-            <h1>Email: {{ Auth::guard('web')->user()->email }} </h1>
-            <h1>UserId: {{ Auth::guard('web')->user()->user_id }} </h1>
-        </div>
+        <h1>Email: {{ Auth::guard('web')->user()->email }} </h1>
+        <h1>UserId: {{ Auth::guard('web')->user()->user_id }} </h1>
     @endif
+    </div>   
 @endsection
