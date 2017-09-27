@@ -59,7 +59,7 @@
                                     <?php
                                     if(isset($value['kills'])):
                                         if($value['deaths'] > 1):
-                                            echo number_format((float)$value['kills'] / $value['deaths'] ,2,'.','')."%";
+                                            echo number_format((float)$value['kills'] / $value['deaths'] ,2,'.','');
                                         else:
                                             echo $value['kills'];
                                         endif;
