@@ -21,6 +21,13 @@ Auth::routes();
 Route::get('/player/{id}', 'PlayerController@show')->name('profile');
 Route::post('/search', 'PlayerController@search')->name('search');
 
+// Get Users
+//Route::get('/user/{email}', 'UserController@show')->name('player_home');
+
+Route::get('/player_home', function() {
+    return view('player.player_home');
+})->name('player_home');
+
 // Versions Page Route
 Route::get('/versions', function() {
     return view('versions');
