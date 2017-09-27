@@ -2,8 +2,9 @@
 
 namespace App\Models\Api\Player;
 use App\Models\Api\Player;
+use App\Models\Api\ApiModel;
 
-class Operator
+class Operator extends ApiModel
 {
     protected $data = [];
     protected $name;

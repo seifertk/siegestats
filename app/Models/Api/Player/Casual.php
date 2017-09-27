@@ -3,15 +3,10 @@
 namespace App\Models\Api\Player;
 
 use App\Models\Api\Player;
-use App\Models\Api\ApiModel;
+use App\Models\Api\Player\Stat;
+use App\Models\Api\Player\Traits\MatchType;
 
-class Casual extends ApiModel
+class Casual extends Stat
 {
-    public function __construct(Player $p)
-    {
-        $this->data = array_filter($p->toArray(), function ($key) {
-            return strpos($key, "stats" !== false)
-            && strpos($key, 'casual') !== false;
-        }, ARRAY_FILTER_USE_KEY);
-    }
+    use MatchType;
 }

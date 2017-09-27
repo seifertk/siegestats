@@ -4,7 +4,7 @@ namespace App\Models\Api;
 
 use App\Models\Api\Player\Operator;
 use App\Models\Api\ApiModel;
-use App\Models\Api\Player\Ranked;
+use App\Models\Api\Player\Stat;
 
 class Player extends ApiModel
 {
@@ -40,10 +40,7 @@ class Player extends ApiModel
 
     public function getStats(string $scope)
     {
-        switch ($scope) {
-            case 'ranked': return new Ranked($scope, $this);
-            case 'casual': return new Casual($scope, $this);
-        }
+        return Stat::make($scope, $this);
     }
 
     public function getOperator(string $operator)

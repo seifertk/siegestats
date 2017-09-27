@@ -4,9 +4,9 @@ namespace App\Models\Api\Player;
 
 use App\Models\Api\Player;
 use App\Models\Api\Player\Stat;
-use App\Models\Api\Player\Traits\MatchType;
+use App\Models\Api\Player\Traits\ModeType;
 
-class Ranked extends Stat
+class Bomb extends Stat
 {
-    use MatchType;
+    use ModeType;
 }
