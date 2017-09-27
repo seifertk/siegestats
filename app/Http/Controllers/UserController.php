@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Auth;
 use Session;
 
 class UserController extends Controller 
@@ -19,7 +18,7 @@ class UserController extends Controller
 
     public function link(Request $request)
     {
-        dd($request->input('player_id'));
+        //dd($request->input('player_id'));
         $playerid = $request->input('player_id');
         $user = Auth::user();
         $user->user_id = $playerid;
