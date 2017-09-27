@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Api;
+use App\Http\Api\Traits\FetchJson;
+use Illuminate\Support\Facades\Cache;
 
 /**
  *  This class provides access to the R6stats API
  */
- class R6stats {
-    protected static $URL = 'https://api.r6stats.com/api/v1';
+ class R6stats
+ {
+    use FetchJson;
+    const URL = 'https://api.r6stats.com/api/v1';
+    const CACHE_TIME = 15;
 
     /**
     * Fetches some basic operator properites: name, role, ctu, figure, badge, bust
@@ -14,11 +19,11 @@ namespace App\Http\Api;
     *
     * @return   json    Array of operators 
     */
-    public static function getOperators() {
-        $curlHandle = curl_init(R6stats::$URL . '/database/operators');
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        return curl_exec($curlHandle);
+    public static function getOperators()
+    {
+        return Cache::remember('r6stats_operators', static::CACHE_TIME, function() {
+            return static::fetchJson(static::URL . "/database/operators");
+        });
     }
 
     /**
@@ -27,11 +32,11 @@ namespace App\Http\Api;
     *
     * @return   json    Array of weapons 
     */
-    public static function getWeapons() {
-        $curlHandle = curl_init(R6stats::$URL . '/database/weapons');
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        return curl_exec($curlHandle);
+    public static function getWeapons()
+    {
+        return Cache::remember('r6stats_weapons', static::CACHE_TIME, function() {
+            return static::fetchJson(static::URL . "/database/weapons");
+        });
     }
 
     /**
@@ -39,10 +44,10 @@ namespace App\Http\Api;
     * 
     * @return   json    Player object 
     */
-    public static function getPlayer($name, $platform="uplay") {
-        $curlHandle = curl_init(R6stats::$URL . '/players/' . $name . '?platform=' .$platform);
-        curl_setopt($curlHandle, CURLOPT_HTTPHEADER, ['accepts: application/json']);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
-        return curl_exec($curlHandle);
+    public function getPlayer(string $name, string $platform="uplay")
+    {
+        return Cache::remember("r6stats_player_${name}_${platform}", function() use ($name, $platform) {
+                return static::fetchJson(static::URL . "/players/$name?platform=$platform");
+        });
     }
  }
