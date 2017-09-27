@@ -10,6 +10,7 @@
     @else
         <div class="panel panel-default">
             <h1>Email: {{ Auth::guard('web')->user()->email }} </h1>
+            <h1>UserId: {{ Auth::guard('web')->user()->user_id }} </h1>
         </div>
     @endif
 @endsection
