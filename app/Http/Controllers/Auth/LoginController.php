@@ -38,11 +38,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Directs user to login page
+     *
+     * @return  view    \user\login.blade.php
+     */
     protected function showLoginForm()
     {
         return view('user.login');
     }
 
+    /**
+    * Specifies which guard is used for authentication (web is default)
+    *
+    * @return AuthenticationGuard   Default guard
+    */
     protected function guard()
     {
         return Auth::guard('web');

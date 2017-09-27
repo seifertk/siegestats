@@ -70,15 +70,32 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Directs user to registration page
+     *
+     * @return \user\register.blade.php
+     */
     protected function showRegistrationForm() {
         return view ('user.register');
     }
 
+    /**
+     * Logs the current user out of the application
+     *
+     * @return  view    \index.blade.php
+     */
     protected function logout() {
         Session::flush(); 
         return Redirect::to('/');
     }
 
+    /**
+     * Registers the user in the application with the provided credentials
+     * Logs user in using credentials after checking if data is valid
+     *
+     * @param Request $request
+     * @return  view    \index.blade.php
+     */
     protected function register(Request $request)
     {
         $validator = $this->validator($request->all());

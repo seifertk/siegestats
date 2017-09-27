@@ -10,20 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
-
-Auth::routes();
-
-// Route::get('/search', 'PlayerController@showSearch');
-Route::get('/player/operatorstats', 'PlayerController@operatorstats')->name('operatorstats');
-Route::get('/player/{id}', 'PlayerController@show')->name('profile');
-Route::post('/search', 'PlayerController@search')->name('search');
-
-// Get Users
-Route::post('/player/link', 'UserController@link')->name('link');
 
 Route::get('/player_home', function() {
     return view('player.player_home');
@@ -33,3 +24,8 @@ Route::get('/player_home', function() {
 Route::get('/versions', function() {
     return view('versions');
 })->name('versions');
+
+Route::get('/player/operatorstats', 'PlayerController@operatorstats')->name('operatorstats');
+Route::get('/player/{id}', 'PlayerController@show')->name('profile');
+Route::post('/search', 'PlayerController@search')->name('search');
+Route::post('/player/link', 'UserController@link')->name('link');
