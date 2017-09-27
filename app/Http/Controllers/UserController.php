@@ -22,7 +22,6 @@ class UserController extends Controller
         dd($request->input('player_id'));
         $playerid = $request->input('player_id');
         $user = Auth::user();
-        dd($user);
         $user->user_id = $playerid;
         $user->update();
 

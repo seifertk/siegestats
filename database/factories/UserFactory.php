@@ -19,6 +19,7 @@ $factory->defineAs(User::class, 'admin', function (Faker $faker) {
         'email' => 'root@siegestats.com',
         'password' => bcrypt('password'),
         'remember_token' => str_random(10),
+        'user_id' => ''
     ];
 });
 
