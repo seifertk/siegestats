@@ -71,9 +71,11 @@
 
                                 <!--Time is in seconds. Convert to hours with seconds appended--> 
                                 <div class="col-sm-3">
-                                    Time Played (HH:mm):
+                                    Time Played:
                                     <?php
-                                        echo gmdate("H:i", $value['timePlayed']);
+                                        $hours = floor($value['timePlayed'] / 3600);
+                                        $minutes = round(fmod($value['timePlayed'] / 60, 60.0),0);
+                                        echo $hours ."h " .$minutes ."m";
                                     ?>
                                     
                                 </div>                              
