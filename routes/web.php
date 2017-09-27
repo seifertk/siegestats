@@ -22,7 +22,7 @@ Route::get('/player/{id}', 'PlayerController@show')->name('profile');
 Route::post('/search', 'PlayerController@search')->name('search');
 
 // Get Users
-//Route::get('/user/{email}', 'UserController@show')->name('player_home');
+Route::post('/link', 'UserController@link')->name('link');
 
 Route::get('/player_home', function() {
     return view('player.player_home');
