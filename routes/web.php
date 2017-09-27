@@ -24,4 +24,4 @@ Route::post('/search', 'PlayerController@search')->name('search');
 // Versions Page Route
 Route::get('/versions', function() {
     return view('versions');
-});
+})->name('versions');
