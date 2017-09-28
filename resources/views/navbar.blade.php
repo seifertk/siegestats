@@ -25,7 +25,7 @@
                     User Statistics <span class="caret"></span>
                 </a>
                 <ul id="userstatsdropdown" class="dropdown-menu">
-                            <li><a>General</a></li>
+                            <li><a href="{{ route('profile') }}?id={{Auth::user()->uplay_id}}">General</a></li>
                             <li><a href="{{ route('operatorstats') }}">Operators</a></li>
                             <li><a>Weapon Stats</a></li>
                 </ul>
