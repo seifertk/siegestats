@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Api\R6db;
 use Session;
 
+
 class PlayerController extends Controller 
 {
+    /**
+     * Searches for players by name and platform and 
+     * shows player(s) that match criteria
+     *
+     * @param   Request  $request
+     * @return  view    \player\ (index.blade or profile.blade)
+     */
     public function search(Request $request)
     {
         $name = $request->input('name');
@@ -25,17 +33,29 @@ class PlayerController extends Controller
         return redirect()->route('profile', ['id' => $id]);
     }
 
+    /**
+     * Searches for player using user id and shows related player data 
+     *
+     * @param   string  $id
+     * @return  view    \player\profile.blade.php
+     */
     public function show($id)
     {
         $player = R6db::getPlayer($id);
         return view('player.profile', ['player' => $player]);
     }
 
-    public function operatorstats()
+    /**
+     * Shows all operators and their stats for a user.
+     * (Will need to use user id in future)
+     *
+     * @param   string  $id
+     * @return  view    \player\operatorstats.blade.php
+     */
+    public function operatorStats()
     {
         $arr = json_decode(R6db::getPlayer('7d7ac237-a3da-45d3-9e41-6ed133a2d63c'),TRUE)['stats']['operator'];
         ksort($arr);
-        //dd($arr);
         return view('player.operatorstats', compact('arr'));
     }
 }
