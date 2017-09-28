@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Api\R6db;
 use Session;
 
+
 class PlayerController extends Controller 
 {
     /**
@@ -51,7 +52,7 @@ class PlayerController extends Controller
      * @param   string  $id
      * @return  view    \player\operatorstats.blade.php
      */
-    public function operatorstats()
+    public function operatorStats()
     {
         $arr = json_decode(R6db::getPlayer('7d7ac237-a3da-45d3-9e41-6ed133a2d63c'),TRUE)['stats']['operator'];
         ksort($arr);

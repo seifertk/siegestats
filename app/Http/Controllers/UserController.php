@@ -20,7 +20,7 @@ class UserController extends Controller
         $playerid = $request->input('player_id');
         $playername = $request->input('player_name');
         $user = Auth::user();
-        $user->user_id = $playerid;
+        $user->uplay_id = $playerid;
         $user->update();
 
         Session::flash('message', 'User ' . $user->email . ' successfully linked with Player ' . $playername);

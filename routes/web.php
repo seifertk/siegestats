@@ -25,7 +25,7 @@ Route::get('/versions', function() {
     return view('versions');
 })->name('versions');
 
-Route::get('/player/operatorstats', 'PlayerController@operatorstats')->name('operatorstats');
+Route::get('/player/operatorstats', 'PlayerController@operatorStats')->name('operatorstats');
 Route::get('/player/{id}', 'PlayerController@show')->name('profile');
 Route::post('/search', 'PlayerController@search')->name('search');
 Route::post('/player/link', 'UserController@link')->name('link');
