@@ -70,6 +70,26 @@ class Player extends ApiModel
         return compact($ncsa, $emea, $apac);
     }
 
+    public function getCompare()
+    {
+        $general = Stat::make("general", $this);
+        $name = $this->getName();
+        $level = $this->getLevel();
+        $timePlayed = $this->getDuration($general->getTimePlayed());
+        $wlRatio = $general->getWinLossRatio();
+        $kdRatio = $general->getKillDeathRatio();
 
+        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio);
+
+        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", $array);
+
+    }
+
+    public function getDuration(int $time)
+    {
+        $hours = floor($time / 3600);
+        $minutes = round(fmod($time / 60, 60.0),0);
+        return $hours ."h " .$minutes ."m";
+    }
 
 }

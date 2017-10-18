@@ -60,7 +60,7 @@ abstract class Stat extends ApiModel
             case self::BOMB: return new Bomb(self::BOMB, $p);
             case self::SECURE_AREA: return new Secure(self::SECURE, $p);
             case self::HOSTAGE: return new Hostage(self::HOSTAGE, $p);
-            case self::GENERAL:
+            case self::GENERAL: return new General(self::GENERAL, $p);
             case self::PLAYER: return new General(self::GENERAL, $p);
             case self::CASUAL: return new Casual(self::CASUAL, $p);
             case self::RANKED: return new Ranked(self::RANKED, $p);
