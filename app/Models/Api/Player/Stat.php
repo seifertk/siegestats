@@ -67,4 +67,26 @@ abstract class Stat extends ApiModel
             default: throw new \InvalidArgumentException();
         }
     }
+
+    final static public function matchTypes()
+    {
+        return [
+            static::BOMB,
+            static::SECURE_AREA,
+            static::HOSTAGE,
+        ];
+    }
+
+    final static public function modeTypes()
+    {
+        return [
+            static::CASUAL,
+            static::RANKED,
+        ];
+    }
+
+    public function getStatName()
+    {
+        return $this->name;
+    }
 }

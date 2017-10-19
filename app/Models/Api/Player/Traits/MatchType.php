@@ -25,6 +25,11 @@ trait MatchType
         return $this->getStat('kills');
     }
 
+    public function getKD()
+    {
+        return round($this->getKills() / $this->getDeaths(), 3);
+    }
+
     public function getLost()
     {
         return $this->getStat('lost');
