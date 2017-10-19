@@ -26,3 +26,6 @@
     </body>
 </html>
 <script src="/js/app.js"></script>
+<script>
+    @yield('scripts')
+</script>

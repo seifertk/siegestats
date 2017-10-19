@@ -8,7 +8,6 @@ use App\Models\Api\Player;
 use Auth;
 use Session;
 
-
 class PlayerController extends Controller 
 {
     /**
@@ -43,13 +42,14 @@ class PlayerController extends Controller
      */
     public function show(Request $request, $id = null)
     {
+        $id = $id ?? ($request->has('id') ? $request->get('id') : null);
+        $user = Auth::user();
+
         if ($id) {
-            $player = R6db::getPlayer($id);
-            return view('player.profile', ['player' => $player]);
-        } elseif ($request->has('id')) {
-            $player = R6db::getPlayer($request->get('id'));
-            return view('player.profile', ['player' => $player]);
+            $player = new Player(R6db::getPlayer($id));
+            return view('player.profile', compact('player', 'user'));
         }
+        
         return redirect()->back()->withError('No linked profile found');
     }
 

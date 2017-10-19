@@ -5,9 +5,12 @@ namespace App\Models\Api;
 use App\Models\Api\Player\Operator;
 use App\Models\Api\ApiModel;
 use App\Models\Api\Player\Stat;
+use Carbon\Carbon;
 
 class Player extends ApiModel
 {
+    protected $stats = [];
+
     public function __construct(string $json) 
     {
         $this->data = array_dot(json_decode($json, true));
@@ -35,12 +38,34 @@ class Player extends ApiModel
 
     public function getLastPlayed()
     {
-        return $this->get('lastPlayed.last_played');
+        // the time last played is the present time minus the value in 
+        // lastplayed.ranked/casual
+        $recent = max($this->get('lastPlayed.casual'), $this->get('lastPlayed.ranked'));
+        return Carbon::createFromTimestamp(Carbon::now()->timestamp - $recent);
+    }
+
+    public function getMatchTypes()
+    {
+        return array_map(function ($match) {
+            return $this->getStats($match);
+        }, Stat::matchTypes());
+    }
+
+    public function getModeTypes()
+    {
+        return array_map(function($type) {
+            return $this->getStats($type);
+        }, Stat::modeTypes());
     }
 
     public function getStats(string $scope)
     {
-        return Stat::make($scope, $this);
+        // cache the stats for later retrieval
+        if (!array_key_exists($scope, $this->stats)) {
+            $this->stats[$scope] = Stat::make($scope, $this);
+        }
+
+        return $this->stats[$scope];
     }
 
     public function getOperator(string $operator)
@@ -48,9 +73,14 @@ class Player extends ApiModel
         return new Operator($operator, $this);
     }
 
+    public function getCreatedAt()
+    {
+        return Carbon::parse($this->get('created_at'));
+    }
+
     public function getRank(int $season = null)
     {
-        if ($season != null) {
+        if ($season === null) {
             return $this->getCurrentRank();
         }
         // return ranks for each region

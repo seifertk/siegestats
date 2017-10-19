@@ -105,11 +105,6 @@ class General extends Stat
         return $this->getStat('suicides');
     }
 
-    protected function getStat(string $stat)
-    {
-        return $this->get('stats.general.' . $stat);
-    }
-
     public function getAssistsProgression()
     {
         return $this->getStatProgression('assists');

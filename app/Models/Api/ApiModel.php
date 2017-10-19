@@ -43,4 +43,24 @@ abstract class ApiModel implements \JsonSerializable
     {
         return $this->toArray(false);
     }
+
+    final protected function toTimeString(int $seconds)
+    {
+        // get the hours and minutes
+        $hours = intdiv($seconds, 3600);
+        $minutes = intdiv($seconds, 60) % 60;
+
+        return "{$hours}h {$minutes}m";
+    }
+
+    // magic method to allow getting strings of any 'time' methods
+    public function __call($name, $arguments)
+    {
+        if(strpos($name, 'Time') && ends_with($name, 'String')) {
+            $method = substr($name, 0, strpos($name, 'String'));
+            if (method_exists($this, $method)) {
+                return $this->toTimeString($this->$method($arguments));
+            }
+        }
+    }
 }
