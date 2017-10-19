@@ -112,7 +112,7 @@ class Player extends ApiModel
         //general stats
         $name = $this->getName();
         $level = $this->getLevel();
-        $timePlayed = $this->getDuration($general->getTimePlayed());
+        $timePlayed = $this->toTimeString($general->getTimePlayed());
         $wlRatio = $general->getWinLossRatio();
         $kdRatio = $general->getKillDeathRatio();
         $matchesPlayed = $general->getPlayed();
@@ -122,14 +122,14 @@ class Player extends ApiModel
         $casualDeaths = $casual->getDeaths();
         $casualWLRatio = $casual->getWinLossRatio();
         $casualKDRatio = $casual->getKillDeathRatio();
-        $casualTimePlayed = $this->getDuration($casual->getTimePlayed());
+        $casualTimePlayed = $this->toTimeString($casual->getTimePlayed());
 
         //ranked stats
         $rankedKills = $ranked->getKills();
         $rankedDeaths = $ranked->getDeaths();
         $rankedWLRatio = $ranked->getWinLossRatio();
         $rankedKDRatio = $ranked->getKillDeathRatio();
-        $rankedTimePlayed = $this->getDuration($ranked->getTimePlayed());
+        $rankedTimePlayed = $this->toTimeString($ranked->getTimePlayed());
 
         //misc stats
         $bulletsFired = $general->getBulletsFired();
@@ -151,19 +151,6 @@ class Player extends ApiModel
             "rankedKills", "rankedDeaths", "rankedWLRatio", "rankedKDRatio", "rankedTimePlayed", 
             "bulletsFired", "bulletsHit", "gadgetsDestroyed", "headshot", "meleeKills", "suicides", "blindKills", "penetrationKills",
             $array);
-    }
-
-    /*
-    * Converts seconds to HH:MM format
-    *
-    * @param int $time
-    * @return string (H:MM)
-    */
-    public function getDuration(int $time)
-    {
-        $hours = floor($time / 3600);
-        $minutes = round(fmod($time / 60, 60.0),0);
-        return $hours ."h " .$minutes ."m";
     }
 
 }
