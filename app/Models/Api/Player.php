@@ -48,51 +48,6 @@ class Player extends ApiModel
         return new Operator($operator, $this);
     }
 
-    public function getOperators()
-    {
-        $names = [
-            "Ash",
-            "Bandit",
-            "Blackbeard",
-            "Blitz",
-            "Buck",
-            "Capitao",
-            "Castle",
-            "Caveira",
-            "Doc",
-            "Echo",
-            "Ela",
-            "Frost",
-            "Fuze",
-            "Glaz",
-            "Hibana",
-            "IQ",
-            "Jackal",
-            "Jager",
-            "Kapkan",
-            "Lesion",
-            "Mira",
-            "Montagne",
-            "Mute",
-            "Pulse",
-            "Rook",
-            "Sledge",
-            "Smoke",
-            "Tachanka",
-            "Thatcher",
-            "Thermite",
-            "Twitch",
-            "Valkyrie",
-            "Ying"
-        ];
-
-        $operators = [];
-        foreach($names as $n) {
-            $operators[] = new Operator($n, $this);
-        }
-        return $operators;
-    }
-
     public function getRank(int $season = null)
     {
         if ($season != null) {
