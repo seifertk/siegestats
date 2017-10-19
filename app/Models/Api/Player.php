@@ -79,21 +79,56 @@ class Player extends ApiModel
         $hostage = Stat::make("hostage", $this);
         $secure = Stat::make("secure", $this);
         
+        //general stats
         $name = $this->getName();
         $level = $this->getLevel();
         $timePlayed = $this->getDuration($general->getTimePlayed());
         $wlRatio = $general->getWinLossRatio();
         $kdRatio = $general->getKillDeathRatio();
+        $matchesPlayed = $general->getPlayed();
 
+        //casual stats
+        $casualKills = $casual->getKills();
+        $casualDeaths = $casual->getDeaths();
+        $casualWLRatio = $casual->getWinLossRatio();
+        $casualKDRatio = $casual->getKillDeathRatio();
+        $casualTimePlayed = $this->getDuration($casual->getTimePlayed());
+
+        //ranked stats
         $rankedKills = $ranked->getKills();
         $rankedDeaths = $ranked->getDeaths();
+        $rankedWLRatio = $ranked->getWinLossRatio();
+        $rankedKDRatio = $ranked->getKillDeathRatio();
+        $rankedTimePlayed = $this->getDuration($ranked->getTimePlayed());
 
-        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $rankedKills, $rankedDeaths);
+        //misc stats
+        $bulletsFired = $general->getBulletsFired();
+        $bulletsHit = $general->getBulletsHit();
+        $gadgetsDestroyed = $general->getGadgetsDestroyed();
+        $headshot = $general->getHeadshot();
+        $meleeKills = $general->getMeleeKills();
+        $suicides = $general->getSuicides();
+        $blindKills = $general->getBlindKills();
+        $penetrationKills = $general->getPenetrationKills();
 
-        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "rankedKills", "rankedDeaths", $array);
+        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $matchesPlayed, 
+            $casualKills, $casualDeaths, $casualWLRatio, $casualKDRatio, $casualTimePlayed, 
+            $rankedKills, $rankedDeaths, $rankedWLRatio, $rankedKDRatio, $rankedTimePlayed,
+            $bulletsFired, $bulletsHit, $gadgetsDestroyed, $headshot, $meleeKills, $suicides, $blindKills, $penetrationKills);
 
+        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "matchesPlayed", 
+            "casualKills", "casualDeaths", "casualWLRatio", "casualKDRatio", "casualTimePlayed", 
+            "rankedKills", "rankedDeaths", "rankedWLRatio", "rankedKDRatio", "rankedTimePlayed", 
+            "bulletsFired", "bulletsHit", "gadgetsDestroyed", "headshot", "meleeKills", "suicides", "blindKills", "penetrationKills",
+            $array);
     }
 
+    /*
+    * Converts seconds to HH:MM format
+    *
+    * @param int $time
+    * @return string (H:MM)
+    */
     public function getDuration(int $time)
     {
         $hours = floor($time / 3600);
