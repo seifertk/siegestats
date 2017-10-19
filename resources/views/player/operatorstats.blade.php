@@ -21,6 +21,18 @@
                     else:
                         $kills = 0;
                     endif;
+
+                    if(isset($value['lost'])):
+                        $lost = $value['lost'];
+                    else:
+                        $lost = 0;
+                    endif;
+
+                    if(isset($value['deaths'])):
+                        $deaths = $value['deaths'];
+                    else:
+                        $deaths = 0;
+                    endif;
                 ?>
 
                 <!--On hover show the view stats button-->
@@ -36,7 +48,7 @@
                                 </div>
 
                                 <div class="col-sm-1">
-                                    Lost: {{$value['lost']}}
+                                    Lost: {{$lost}}
                                 </div>
 
                                 <div class="col-sm-1">
@@ -44,13 +56,13 @@
               
                                 </div>      
                                 <div class="col-sm-1">
-                                    Deaths: {{$value['deaths']}}
+                                    Deaths: {{$deaths}}
                                 </div>
 
                                 <div class="col-sm-2">
                                     Win Ratio: 
                                     <?php
-                                        echo number_format((float)$value['won'] / ($value['won'] + $value['lost']) * 100,2,'.','')."%";
+                                        echo number_format((float)$value['won'] / ($value['won'] + $lost) * 100,2,'.','')."%";
                                     ?>
                                 </div>
 
@@ -58,10 +70,10 @@
                                     K/D Ratio: 
                                     <?php
                                     if(isset($value['kills'])):
-                                        if($value['deaths'] > 1):
-                                            echo number_format((float)$value['kills'] / $value['deaths'] ,2,'.','');
+                                        if($deaths > 1):
+                                            echo number_format((float)$kills / $deaths ,2,'.','');
                                         else:
-                                            echo $value['kills'];
+                                            echo $kills;
                                         endif;
                                     else:
                                         echo 0;
