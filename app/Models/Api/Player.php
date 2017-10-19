@@ -73,14 +73,11 @@ class Player extends ApiModel
         return new Operator($operator, $this);
     }
 
-<<<<<<< HEAD
     public function getCreatedAt()
     {
         return Carbon::parse($this->get('created_at'));
     }
 
-=======
->>>>>>> Remove function
     public function getRank(int $season = null)
     {
         if ($season === null) {
