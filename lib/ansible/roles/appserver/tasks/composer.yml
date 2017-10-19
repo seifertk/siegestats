@@ -6,4 +6,5 @@
   composer:
     command: install
     working_dir: /vagrant
+    no_dev: false
   become: "{{vagrant_user}}"
