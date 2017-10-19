@@ -62,9 +62,18 @@ class PlayerController extends Controller
      */
     public function operatorStats()
     {
-        $arr = json_decode(R6db::getPlayer('7d7ac237-a3da-45d3-9e41-6ed133a2d63c'),TRUE)['stats']['operator'];
-        ksort($arr);
-        return view('player.operatorstats', compact('arr'));
+        $user = Auth::user();
+        if($user->uplay_id != null)
+        {
+            $arr = json_decode(R6db::getPlayer($user->uplay_id),TRUE)['stats']['operator'];
+            ksort($arr);
+            return view('player.operatorstats', compact('arr'));
+        }
+        else
+        {
+            Session::flash('message', 'No linked profile for user – ' . $user->email);
+            return redirect()->route('index');
+        }
     }
 
     /**
@@ -86,11 +95,11 @@ class PlayerController extends Controller
             $compareData[] = $players[$i]->getCompare();
         }
 
-        echo print_r($compareData, true);
+        //echo print_r($compareData, true);
         //echo print_r($compareData[0]['name'], true);
 
         //pass $compareData to modal
-
+        return view('player.compare', compact('compareData'));
         //return redirect()->route('index');
     }
 }

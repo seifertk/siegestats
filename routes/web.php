@@ -29,4 +29,4 @@ Route::get('/player/operatorstats', 'PlayerController@operatorStats')->name('ope
 Route::get('/player/{id?}', 'PlayerController@show')->name('profile');
 Route::post('/search', 'PlayerController@search')->name('search');
 Route::post('/player/link', 'UserController@link')->name('link');
-Route::patch('/player/compare', 'PlayerController@comparePlayers')->name('compare');
+Route::post('/player/compare', 'PlayerController@comparePlayers')->name('compare');

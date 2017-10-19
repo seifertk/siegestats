@@ -24,7 +24,7 @@
             <h1>Matching</h1>
         @else
             <h1>Not matching</h1>
-            {!! Form::open(['route' => 'compare', 'method' => 'patch', 'id' => 'form-compare', 'class' => 'form-horizontal transparent']) !!}
+            {!! Form::open(['route' => 'compare', 'method' => 'post', 'id' => 'form-compare', 'class' => 'form-horizontal transparent']) !!}
            
                 {!! Form::hidden('player_id', $profileuser) !!}
                 {!! Form::submit('Quick Compare', ['class' => 'btn btn-primary']) !!}
