@@ -7,7 +7,7 @@
 <div class="panel panel-default">
     <div id="profile-head">
         <div id="profile-img">
-            <img src="/img/operators/bandit_badge.png"/>
+            <img id="avatar" src="http://uplay-avatars.s3.amazonaws.com/{{ $player->getId() }}/default_146_146.png"/>
         </div>
 
         <div id="profile-stats">
