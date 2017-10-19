@@ -95,7 +95,7 @@ class Player extends ApiModel
     {
         $ncsa = $this->get("rank.ncsa.rank");
         $emea = $this->get("rank.emea.rank");
-        $apac = $this->get("rank.apac.rank");        
+        $apac = $this->get("rank.apac.rank");
 
         return compact($ncsa, $emea, $apac);
     }
