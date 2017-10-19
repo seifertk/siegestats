@@ -13,7 +13,7 @@
                 <li><b>Uplay Id :</b>    {{$player->userId}}</li>
                 <li><b>Level :</b>       {{$player->level}}</li>
             </ul>
-            {!! Form::hidden('player_id', $player->userId) !!}
+            {!! Form::hidden('player_id', $player->id) !!}
             {!! Form::hidden('player_name', $player->name) !!}
             {!! Form::submit('Link This Account', ['class' => 'btn btn-primary']) !!}
         <hr/>
