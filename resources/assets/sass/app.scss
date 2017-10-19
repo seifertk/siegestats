@@ -109,8 +109,7 @@ video#bg_vid {
 }
 
 //used for div to make it semi-transparent (Used with Panel class)
-.semi-transparent
-{
+.semi-transparent {
     background-color: rgba(0, 0, 0, 0.3);
     color:#ffffff;
     border-color: rgba(0,0,0,0.0);
@@ -119,4 +118,100 @@ video#bg_vid {
 
 .form-control {
     font-weight: bold;
+}
+
+/**
+ *  Player Profile
+ */
+
+.panel {
+    border: 0;
+}
+
+#profile-head {
+    height: 128px;
+    border-bottom: 1px solid #ddd;
+    background-color: $brand-primary;
+    color: white;
+}
+
+#profile-img {
+    float: left;
+}
+
+#profile-stats {
+    float: left;
+    width: 30%;
+    min-height: 128px;
+    padding-left: 24px;
+    padding-top: 10px;
+    #profile-name {
+        font-weight: 800;
+        font-size: 1.15em;
+    }
+    #player-level-container {
+        position: relative;
+    }
+    #clearance-border {
+        height: 65px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #player-level {
+        font-size: 1.15em;
+        font-weight: 800;
+        color: #ddd;
+        margin: 12px 0 0 16px;
+        position: absolute;
+        z-index: 100;
+    }
+}
+
+#profile-nav {
+    float: left;
+    margin: 0;
+    height: 128px;
+    width: 50%;
+    ul {
+        border-bottom: 0;
+        li {
+            margin: 0;
+            height: 128px;
+            width: 150px;
+            a {
+                margin: 0;
+                height: 128px;
+                width: 150px;
+                text-align: center;
+                font-weight: 800;
+                font-size: 1.10em;
+                color: white;
+            }
+        }
+        .active a {
+            background-color: $brand-secondary;
+        }
+    }
+}
+
+#rank {
+    height: 100px;
+    margin-top: -20px;
+}
+
+#content {
+    clear: both;
+    color: white;
+    font-size: 1.10em;
+    background-color: $brand-secondary;
+}
+
+.tab-content {
+    padding: 3%;
+    background-color: $brand-secondary;
+    color: white;
+    h2 {
+        margin: 0;
+    }
 }

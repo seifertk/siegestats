@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Api\R6db;
+use App\Models\Api\Player;
 use Session;
 
 
@@ -42,10 +43,13 @@ class PlayerController extends Controller
     public function show(Request $request, $id = null)
     {
         if ($id) {
-            $player = R6db::getPlayer($id);
+            // $player = R6db::getPlayer($id);
+            $player = new Player(R6db::getPlayer($id));
             return view('player.profile', ['player' => $player]);
         } elseif ($request->has('id')) {
-            $player = R6db::getPlayer($request->get('id'));
+            // $player = R6db::getPlayer($request->get('id'));
+            $player = new Player(R6db::getPlayer($request->get('id')));
+            var_dump($player);
             return view('player.profile', ['player' => $player]);
         }
         return redirect()->back()->withError('No linked profile found');
