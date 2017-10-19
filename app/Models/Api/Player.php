@@ -74,16 +74,23 @@ class Player extends ApiModel
     {
         $general = Stat::make("general", $this);
         $ranked = Stat::make("ranked", $this);
+        $casual = Stat::make("casual", $this);
+        $bomb = Stat::make("bomb", $this);
+        $hostage = Stat::make("hostage", $this);
+        $secure = Stat::make("secure", $this);
+        
         $name = $this->getName();
         $level = $this->getLevel();
         $timePlayed = $this->getDuration($general->getTimePlayed());
         $wlRatio = $general->getWinLossRatio();
         $kdRatio = $general->getKillDeathRatio();
+
         $rankedKills = $ranked->getKills();
+        $rankedDeaths = $ranked->getDeaths();
 
-        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $rankedKills);
+        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $rankedKills, $rankedDeaths);
 
-        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "rankedKills", $array);
+        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "rankedKills", "rankedDeaths", $array);
 
     }
 

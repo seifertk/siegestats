@@ -5,6 +5,16 @@ namespace App\Models\Api\Player\Traits;
 // ranked, casual, etc
 trait MatchType
 {
+    public function getWinLossRatio()
+    {
+        return number_format($this->getWon() / $this->getLost(),2, '.', '');
+    }
+
+    public function getKillDeathRatio()
+    {
+        return number_format($this->getKills() / $this->getDeaths(), 2, '.', '');
+    }
+
     public function getDeaths()
     {
         return $this->getStat('deaths');

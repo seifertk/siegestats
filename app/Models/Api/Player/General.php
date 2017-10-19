@@ -105,21 +105,6 @@ class General extends Stat
         return $this->getStat('suicides');
     }
 
-    public function getTimePlayed()
-    {
-        return $this->getStat('timePlayed');
-    }
-
-    public function getWinLossRatio()
-    {
-        return number_format($this->getWon() / $this->getLost(),2, '.', '');
-    }
-
-    public function getKillDeathRatio()
-    {
-        return number_format($this->getKills() / $this->getDeaths(), 2, '.', '');
-    }
-
     protected function getStat(string $stat)
     {
         return $this->get('stats.general.' . $stat);

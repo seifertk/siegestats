@@ -58,7 +58,7 @@ abstract class Stat extends ApiModel
     {
         switch($type) {
             case self::BOMB: return new Bomb(self::BOMB, $p);
-            case self::SECURE_AREA: return new Secure(self::SECURE, $p);
+            case self::SECURE_AREA: return new Secure(self::SECURE_AREA, $p);
             case self::HOSTAGE: return new Hostage(self::HOSTAGE, $p);
             case self::GENERAL: return new General(self::GENERAL, $p);
             case self::PLAYER: return new General(self::GENERAL, $p);

@@ -24,7 +24,7 @@
                                 <h2>{{$compareData[$player1IDX]["name"]}}</h2>
                             </div>
                             <div class="col-sm-2">
-                                <h1>VS.</h1>
+                                <h1>VS</h1>
                             </div>
 
                             <div class="col-sm-5">
@@ -38,6 +38,7 @@
 
                         <!--Show the core stats fields of both players-->
                         <div class="col-sm-12 collapse" id="coreStats">
+                            <!--Player clearance level-->
                             <div class="row">
                                 <div class="col-sm-5">
                                     {{$compareData[$player1IDX]["level"]}}
@@ -49,6 +50,8 @@
                                     {{$compareData[$player2IDX]["level"]}}
                                 </div>
                             </div>
+
+                            <!--Player overall time played-->
                             <div class="row">
                                 <div class="col-sm-5">
                                     {{$compareData[$player1IDX]["timePlayed"]}}
@@ -58,6 +61,32 @@
                                 </div>
                                 <div class="col-sm-5">
                                     {{$compareData[$player2IDX]["timePlayed"]}}
+                                </div>
+                            </div>
+
+                            <!--Player overall win/loss ratio-->
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    {{$compareData[$player1IDX]["wlRatio"]}}
+                                </div>
+                                <div class="col-sm-2">
+                                    <h4>Win/Loss Ratio</h4>
+                                </div>
+                                <div class="col-sm-5">
+                                    {{$compareData[$player2IDX]["wlRatio"]}}
+                                </div>
+                            </div>
+
+                            <!--Player overall kill/death ratio-->
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    {{$compareData[$player1IDX]["kdRatio"]}}
+                                </div>
+                                <div class="col-sm-2">
+                                    <h4>Kill/Death Ratio</h4>
+                                </div>
+                                <div class="col-sm-5">
+                                    {{$compareData[$player2IDX]["kdRatio"]}}
                                 </div>
                             </div>
                         </div>
@@ -90,6 +119,8 @@
                                     {{$compareData[$player2IDX]["kdRatio"]}}
                                 </div>
                             </div>
+
+
                         </div>
 
                         <div class="col-sm-12 btn" type="button" aria-expanded="true" aria-controls="mpRanked" data-toggle="collapse" data-target="#mpRanked">
@@ -107,6 +138,17 @@
                                 </div>
                                 <div class="col-sm-5">
                                     {{$compareData[$player2IDX]["rankedKills"]}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    {{$compareData[$player1IDX]["rankedDeaths"]}}
+                                </div>
+                                <div class="col-sm-2">
+                                    <h4>Deaths</h4>
+                                </div>
+                                <div class="col-sm-5">
+                                    {{$compareData[$player2IDX]["rankedDeaths"]}}
                                 </div>
                             </div>
                         </div>
