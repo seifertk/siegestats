@@ -15,16 +15,6 @@ class General extends Stat
         return $this->getStat('assists');
     }
 
-    public function getKills()
-    {
-        return $this->getStat('kills');
-    }
-
-    public function getDeaths()
-    {
-        return $this->getStat('deaths');
-    }
-
     public function getBlindKills()
     {
         return $this->getStat('blindKills');

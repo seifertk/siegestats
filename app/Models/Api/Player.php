@@ -73,15 +73,17 @@ class Player extends ApiModel
     public function getCompare()
     {
         $general = Stat::make("general", $this);
+        $ranked = Stat::make("ranked", $this);
         $name = $this->getName();
         $level = $this->getLevel();
         $timePlayed = $this->getDuration($general->getTimePlayed());
         $wlRatio = $general->getWinLossRatio();
         $kdRatio = $general->getKillDeathRatio();
+        $rankedKills = $ranked->getKills();
 
-        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio);
+        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $rankedKills);
 
-        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", $array);
+        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "rankedKills", $array);
 
     }
 
