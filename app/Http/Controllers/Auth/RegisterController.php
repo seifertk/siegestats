@@ -76,7 +76,7 @@ class RegisterController extends Controller
      * @return \user\register.blade.php
      */
     protected function showRegistrationForm() {
-        return view ('user.register');
+        return view ('auth.register');
     }
 
     /**
