@@ -46,8 +46,18 @@ class PlayerController extends Controller
         $user = Auth::user();
 
         if ($id) {
+<<<<<<< HEAD
             $player = new Player(R6db::getPlayer($id));
             return view('player.profile', compact('player', 'user'));
+=======
+            // $player = R6db::getPlayer($id);
+            $player = new Player(R6db::getPlayer($id));
+            return view('player.profile', ['player' => $player]);
+        } elseif ($request->has('id')) {
+            // $player = R6db::getPlayer($request->get('id'));
+            $player = new Player(R6db::getPlayer($request->get('id')));
+            return view('player.profile', ['player' => $player]);
+>>>>>>> Tab navigation
         }
         
         return redirect()->back()->withError('No linked profile found');

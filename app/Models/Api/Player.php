@@ -73,9 +73,55 @@ class Player extends ApiModel
         return new Operator($operator, $this);
     }
 
+<<<<<<< HEAD
     public function getCreatedAt()
     {
         return Carbon::parse($this->get('created_at'));
+=======
+    public function getOperators()
+    {
+        $names = [
+            "Ash",
+            "Bandit",
+            "Blackbeard",
+            "Blitz",
+            "Buck",
+            "Capitao",
+            "Castle",
+            "Caveira",
+            "Doc",
+            "Echo",
+            "Ela",
+            "Frost",
+            "Fuze",
+            "Glaz",
+            "Hibana",
+            "IQ",
+            "Jackal",
+            "Jager",
+            "Kapkan",
+            "Lesion",
+            "Mira",
+            "Montagne",
+            "Mute",
+            "Pulse",
+            "Rook",
+            "Sledge",
+            "Smoke",
+            "Tachanka",
+            "Thatcher",
+            "Thermite",
+            "Twitch",
+            "Valkyrie",
+            "Ying"
+        ];
+
+        $operators = [];
+        foreach($names as $n) {
+            $operators[] = new Operator($n, $this);
+        }
+        return $operators;
+>>>>>>> Tab navigation
     }
 
     public function getRank(int $season = null)
