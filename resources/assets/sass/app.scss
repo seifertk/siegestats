@@ -227,3 +227,35 @@ video#bg_vid {
         margin: 0;
     }
 }
+
+#newsfeed {
+    .item {
+        margin-bottom: 3rem;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    a {
+        color: #fff;
+    }
+
+    .news_date {
+        display:block !important;
+        span {
+            margin-left:2rem;
+        }
+    }
+    img {
+        max-width: 100%;
+    }
+}
+
+.r6_menu_patches {
+    @extend .list-group-item;
+    @extend .semi-transparent;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    a {
+        color: #fff;
+        font-size: 1.25rem;
+    }
+}
