@@ -110,19 +110,9 @@ class General extends Stat
         return $this->getStat('timePlayed');
     }
 
-    public function getWins()
-    {
-        return $this->getStat('won');
-    }
-
-    public function getLosses()
-    {
-        return $this->getStat('lost');
-    }
-
     public function getWinLossRatio()
     {
-        return number_format($this->getWins() / $this->getLosses(),2, '.', '');
+        return number_format($this->getWon() / $this->getLost(),2, '.', '');
     }
 
     public function getKillDeathRatio()
