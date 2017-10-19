@@ -4,13 +4,13 @@
 
 @section('content')
 
-<div class="panel panel-default">
+<div class="panel semi-transparent transparent">
 
     <h1>Player Profile </h1>
     <div class="row">
         <div class="col-md-6">
             <h2>General Stats</h2>
-            <table class="table table-hover table-condensed">
+            <table class="table table-condensed">
                 <tr>
                     <th>Name</th>
                     <td>{{$player->getName()}}</td>
@@ -54,7 +54,7 @@
             </table>
         </div>
 
-        <div class="row col-md-6">
+        <div class="col-md-6">
             <ul class="nav nav-tabs" id="stats_tabs">
                 @foreach (array_merge($player->getModeTypes(), $player->getMatchTypes()) as $stat)
                     <li class="nav-item"><a href="#{{$stat->getStatName()}}" class="nav-link">{{$stat->getStatName()}}</a></li>
@@ -64,7 +64,7 @@
             <div class="tab-content">
                 @foreach ($player->getMatchTypes() as $stat)
                     <div class="tab-pane" id="{{$stat->getStatName()}}" role="tabpanel">
-                        <table class="table table-hover table-condensed">
+                        <table class="table table-condensed">
                             <tr>
                                 <th>Played</th>
                                 <td>{{$stat->getPlayed()}}</td>
@@ -82,7 +82,7 @@
                 @endforeach
                 @foreach ($player->getModeTypes() as $stat)
                     <div class="tab-pane" id="{{$stat->getStatName()}}" role="tabpanel">
-                        <table class="table table-hover table-condensed">
+                        <table class="table table-condensed">
                             <tr>
                                 <th>Played</th>
                                 <td>{{$stat->getPlayed()}}</td>
