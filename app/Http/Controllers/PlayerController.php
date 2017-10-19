@@ -79,6 +79,8 @@ class PlayerController extends Controller
     /**
     * Compares the currently logged in users profile against anothers players and shows comparision
     * 
+    * @param Request $request
+    * @return view \player\compare.blade.php
     */
     public function comparePlayers(Request $request)
     {
@@ -89,17 +91,12 @@ class PlayerController extends Controller
         $players = array($player1, $player2);
         $compareData = array();
 
-        //Store the players data in $compareData
+        //Store the player data in $compareData
         for($i =0; $i < 2;++$i)
         {
             $compareData[] = $players[$i]->getCompare();
         }
 
-        //echo print_r($compareData, true);
-        //echo print_r($compareData[0]['name'], true);
-
-        //pass $compareData to modal
         return view('player.compare', compact('compareData'));
-        //return redirect()->route('index');
     }
 }
