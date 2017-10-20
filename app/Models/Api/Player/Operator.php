@@ -18,9 +18,21 @@ class Operator extends ApiModel
         $this->name = $name;
     }
 
+    public function getLCaseName()
+    {
+        return $this->name;
+    }
+
     protected function getStat(string $stat)
     {
-        return $this->get("stats.operator.{$this->name}.{$stat}");
+        $key = "stats.operator.{$this->name}.{$stat}";
+
+        // when operators are not played, they can lack data
+        if (array_key_exists($key, $this->data))  {
+            return $this->get($key);
+        }
+
+        return null;
     }
 
     public function getName()
@@ -51,6 +63,16 @@ class Operator extends ApiModel
     public function getTimePlayed()
     {
         return $this->getStat('timePlayed');
+    }
+
+    public function getWinLossRatio()
+    {
+        return $this->getRatio($this->getWon(), $this->getLost());
+    }
+
+    public function getKillDeathRatio()
+    {
+        return $this->getRatio($this->getKills(), $this->getDeaths());
     }
 
     protected function getStatProgression(string $stat)

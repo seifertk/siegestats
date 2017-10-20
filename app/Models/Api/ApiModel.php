@@ -8,6 +8,7 @@ abstract class ApiModel implements \JsonSerializable
 
     /**
      * Access data using dot syntax.
+     * TODO: Maybe this should return NULL instead of throwing an exception?
      *
      * @param string $key
      * @return void
@@ -66,5 +67,15 @@ abstract class ApiModel implements \JsonSerializable
                 return $this->toTimeString($this->$method($arguments));
             }
         }
+
+        throw new \BadMethodCallException(get_class($this) . ": $name");
     }
+
+    protected function getRatio($dividend, $divisor)
+    {
+        if (!is_numeric($dividend) || !is_numeric($divisor) || $divisor === 0) {
+            return number_format(0, 2, '.', '');
+        }
+        return number_format($dividend / $divisor, 2, '.', '');
+    }    
 }

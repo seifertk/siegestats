@@ -70,7 +70,11 @@ class Player extends ApiModel
 
     public function getOperator(string $operator)
     {
-        return new Operator($operator, $this);
+        if (!array_key_exists($operator, $this->stats)) {
+            $this->stats[$operator] = new Operator($operator, $this);
+        }
+
+        return $this->stats[$operator];
     }
 
     public function getCreatedAt()
@@ -98,6 +102,13 @@ class Player extends ApiModel
         $apac = $this->get("rank.apac.rank");
 
         return compact($ncsa, $emea, $apac);
+    }
+
+    public function getOperators()
+    {
+        return array_map(function ($name) {
+            return $this->getOperator($name);
+        }, config('operators'));
     }
 
     public function getCompare()

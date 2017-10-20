@@ -5,22 +5,18 @@ namespace App\Models\Api\Player\Traits;
 // ranked, casual, etc
 trait MatchType
 {
-    private function _getRatio($dividend, $divisor)
-    {
-        if (!is_numeric($dividend) || !is_numeric($divisor) || $divisor === 0) {
-            return number_format(0, 2, '.', '');
-        }
-        return number_format($dividend / $divisor, 2, '.', '');
-    }
+    abstract protected function getRatio($divident, $divisor);
+    abstract protected function getStat(string $stat);
+    abstract protected function getStatProgression(string $stat);
 
     public function getWinLossRatio()
     {
-        return $this->_getRatio($this->getWon(), $this->getLost());
+        return $this->getRatio($this->getWon(), $this->getLost());
     }
 
     public function getKillDeathRatio()
     {
-        return $this->_getRatio($this->getKills(), $this->getDeaths());
+        return $this->getRatio($this->getKills(), $this->getDeaths());
     }
 
     public function getDeaths()
