@@ -100,6 +100,52 @@ class Player extends ApiModel
         return compact($ncsa, $emea, $apac);
     }
 
+    public function getOperators()
+    {
+        $names = [
+            "ash",
+            "bandit",
+            "blackbeard",
+            "blitz",
+            "buck",
+            "capitao",
+            "castle",
+            "caveira",
+            "doc",
+            "echo",
+            "ela",
+            "frost",
+            "fuze",
+            "glaz",
+            "hibana",
+            "iq",
+            "jackal",
+            "jager",
+            "kapkan",
+            "lesion",
+            "mira",
+            "montagne",
+            "mute",
+            "pulse",
+            "rook",
+            "sledge",
+            "smoke",
+            "tachanka",
+            "thatcher",
+            "thermite",
+            "twitch",
+            "valkyrie",
+            "ying"
+        ];
+
+        $operators = [];
+        foreach($names as $n) {
+            $operators[] = new Operator($n, $this);
+        }
+        ksort($operators);
+        return $operators;
+    }
+
     public function getCompare()
     {
         $general = Stat::make("general", $this);

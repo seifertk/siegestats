@@ -18,6 +18,11 @@ class Operator extends ApiModel
         $this->name = $name;
     }
 
+    public function getLCaseName()
+    {
+        return $this->name;
+    }
+
     protected function getStat(string $stat)
     {
         return $this->get("stats.operator.{$this->name}.{$stat}");
@@ -28,29 +33,70 @@ class Operator extends ApiModel
         return $this->getStat('name');
     }
 
+    protected function checkKey(string $stat)
+    {
+        if(array_key_exists("stats.operator.{$this->name}.{$stat}", $this->data))
+            return true;
+        else
+            return false;
+    }
+
     public function getWon()
     {
-        return $this->getStat('won');
+        if($this->checkKey("won"))
+            return $this->getStat('won');
+        else
+            return 0;
     }
+    
 
     public function getLost()
     {
-        return $this->getStat('lost');
+        if($this->checkKey("lost"))
+            return $this->getStat('lost');
+        else
+            return 0;
     }
 
     public function getKills()
     {
-        return $this->getStat('kills');
+        if($this->checkKey("kills"))
+            return $this->getStat('kills');
+        else
+            return 0;
     }
 
     public function getDeaths()
     {
-        return $this->getStat('deaths');
+        if($this->checkKey("deaths"))
+            return $this->getStat('deaths');
+        else
+            return 0;
     }
 
     public function getTimePlayed()
     {
-        return $this->getStat('timePlayed');
+        if($this->checkKey("timePlayed"))
+            return $this->toTimeString($this->getStat('timePlayed'));
+        else
+            return 0;
+    }
+
+    public function getWinLossRatio()
+    {
+        $total = $this->getWon() + $this->getLost();
+        if($total > 0)
+            return $this->getWon() / ($this->getWon() + $this->getLost());
+        else
+            return 0;
+    }
+
+    public function getKillDeathRatio()
+    {
+        if($this->getDeaths() > 1)
+            return $this->getKills() / $this->getDeaths();
+        else
+            return $this->getKills();
     }
 
     protected function getStatProgression(string $stat)
