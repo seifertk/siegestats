@@ -25,14 +25,24 @@
         <div id="profile-nav">
             <ul class="nav nav-tabs navbar-right">
                 <li class="active"><a data-toggle="tab" href="#overviewTab">Player</a></li>
-                <li><a data-toggle="tab" href="#operatorsTab">Operators</a></li>
+                <li>
+                    <a data-toggle="tab" href="#operatorsTab">
+                        Operators
+                        <img id="navOp" src="/img/operators/recruit_badge.svg"/>
+                    </a>
+                </li>
                 <li>
                     <a data-toggle="tab" href="#rankedTab">
                         Ranked
-                        <img id="rank" src="/img/ranks/rank0.svg"/>
+                        <img id="navRank" src="/img/ranks/rank0.svg"/>
                     </a>
                 </li>
-                <li><a data-toggle="tab" href="#weaponsTab">Weapons</a></li>
+                <li>
+                    <a data-toggle="tab" href="#weaponsTab">
+                        Weapons
+                        
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
