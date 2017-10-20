@@ -21,6 +21,12 @@ class PlayerController extends Controller
     {
         $name = $request->input('name');
         $platform = $request->input('platform');
+
+        // give a URL with a query string for QOL
+        if ($request->isMethod(Request::METHOD_POST)) {
+            return redirect()->route('search', compact('name', 'platform'));
+        }
+
         $results = json_decode(R6db::getPlayers($name, $platform));
 
         if(count($results) > 1) {

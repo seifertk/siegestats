@@ -15,6 +15,7 @@
             <ul id="statsdropdown" class="dropdown-menu">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('versions') }}">Developer Notes</a></li>
+                <li><a href="{{ route('news.index') }}">News</a></li>
                 @if(Auth::user())
                 <li><a href="{{ route('player_home') }}">My Profile</a></li>
                 @endif

@@ -27,6 +27,8 @@ Route::get('/versions', function() {
 
 Route::get('/player/operatorstats', 'PlayerController@operatorStats')->name('operatorstats');
 Route::get('/player/{id?}', 'PlayerController@show')->name('profile');
+Route::get('/search', 'PlayerController@search')->name('search');
 Route::post('/search', 'PlayerController@search')->name('search');
 Route::post('/player/link', 'UserController@link')->name('link');
 Route::post('/player/compare', 'PlayerController@comparePlayers')->name('compare');
+Route::get('/news', 'NewsController@getNews')->name('news.index');

@@ -136,6 +136,26 @@ video#bg_vid {
     border: 0;
 }
 
+.player-index-item {
+    border-bottom: 2px solid #ddd;
+    padding-bottom:0.5rem;
+    padding-top:0.5rem;
+
+    .player-index-item-img {
+        float:left;
+        margin-right:2rem;
+        width:$avatar-dimension;
+        height:$avatar-dimension;
+    }
+
+    ul {
+        list-style: none;
+    }
+    span {
+        @extend h4;
+    }
+}
+
 #profile-head {
     height: 128px;
     border-bottom: 1px solid #ddd;
@@ -225,6 +245,38 @@ video#bg_vid {
     color: white;
     h2 {
         margin: 0;
+    }
+}
+
+#newsfeed {
+    .item {
+        margin-bottom: 3rem;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    a {
+        color: #fff;
+    }
+
+    .news_date {
+        display:block !important;
+        span {
+            margin-left:2rem;
+        }
+    }
+    img {
+        max-width: 100%;
+    }
+}
+
+.r6_menu_patches {
+    @extend .list-group-item;
+    @extend .semi-transparent;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    a {
+        color: #fff;
+        font-size: 1.25rem;
     }
 }
 
