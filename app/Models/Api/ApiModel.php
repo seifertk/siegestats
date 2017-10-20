@@ -67,6 +67,8 @@ abstract class ApiModel implements \JsonSerializable
                 return $this->toTimeString($this->$method($arguments));
             }
         }
+
+        throw new \BadMethodCallException(get_class($this) . ": $name");
     }
 
     protected function getRatio($dividend, $divisor)

@@ -11,12 +11,12 @@ trait MatchType
 
     public function getWinLossRatio()
     {
-        return $this->_getRatio($this->getWon(), $this->getLost());
+        return $this->getRatio($this->getWon(), $this->getLost());
     }
 
     public function getKillDeathRatio()
     {
-        return $this->_getRatio($this->getKills(), $this->getDeaths());
+        return $this->getRatio($this->getKills(), $this->getDeaths());
     }
 
     public function getDeaths()
