@@ -210,11 +210,11 @@ video#bg_vid {
         li {
             margin: 0;
             height: 128px;
-            width: 150px;
+            width: 120px;
             a {
                 margin: 0;
                 height: 128px;
-                width: 150px;
+                width: 120px;
                 text-align: center;
                 font-weight: 800;
                 font-size: 1.10em;
@@ -223,6 +223,9 @@ video#bg_vid {
         }
         .active a {
             background-color: $brand-secondary;
+        }
+        :hover a {
+            background-color: $brand-tertiary;
         }
     }
 }
@@ -281,5 +284,23 @@ video#bg_vid {
 }
 
 .panel-body.hover:hover {
-    background: #2f373c;
+    background: $brand-tertiary;
+}
+
+#stats_tabs {
+    li {
+        a {
+            color:$brand-info;
+            font-weight: bold;
+        }
+    }
+    :hover {
+        background-color:$brand-tertiary;
+    }
+    .nav-item.active {
+        a{
+           color: $brand-primary;
+        }
+        
+    }
 }

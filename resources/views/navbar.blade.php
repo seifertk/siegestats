@@ -17,20 +17,9 @@
                 <li><a href="{{ route('versions') }}">Developer Notes</a></li>
                 <li><a href="{{ route('news.index') }}">News</a></li>
                 @if(Auth::user())
-                <li><a href="{{ route('player_home') }}">My Profile</a></li>
+                    <li><a href="{{ route('profile') }}?id={{Auth::user()->uplay_id}}">My Profile</a></li>
                 @endif
             </ul>
-
-            @if(Auth::user())
-                <a href="#" class="navbar-brand dropdown-toggle" data-toggle="collapse" data-target="#userstatsdropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    User Statistics <span class="caret"></span>
-                </a>
-                <ul id="userstatsdropdown" class="dropdown-menu">
-                            <li><a href="{{ route('profile') }}?id={{Auth::user()->uplay_id}}">General</a></li>
-                            <li><a href="{{ route('operatorstats') }}">Operators</a></li>
-                            <li><a>Weapon Stats</a></li>
-                </ul>
-            @endif
         </div>    
 
         <div class="navbar-form navbar-left form-group">

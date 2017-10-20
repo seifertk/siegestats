@@ -24,14 +24,15 @@
 
         <div id="profile-nav">
             <ul class="nav nav-tabs navbar-right">
-                <li class="active"><a data-toggle="tab" href="#overview">Player</a></li>
-                <li><a data-toggle="tab" href="#operators">Operators</a></li>
+                <li class="active"><a data-toggle="tab" href="#overviewTab">Player</a></li>
+                <li><a data-toggle="tab" href="#operatorsTab">Operators</a></li>
                 <li>
-                    <a data-toggle="tab" href="#rankedStats">
+                    <a data-toggle="tab" href="#rankedTab">
                         Ranked
                         <img id="rank" src="/img/ranks/rank0.svg"/>
                     </a>
                 </li>
+                <li><a data-toggle="tab" href="#weaponsTab">Weapons</a></li>
             </ul>
         </div>
     </div>
@@ -39,7 +40,7 @@
     <div id="content">
         <div class="tab-content">
 
-            <div id="overview" class="tab-pane fade in active">
+            <div id="overviewTab" class="tab-pane fade in active">
                 <h1>Player Profile </h1>
                 <div class="row">
                     <div class="col-md-6">
@@ -156,7 +157,7 @@
                 @endif
             </div>
 
-            <div id="operators" class="tab-pane">
+            <div id="operatorsTab" class="tab-pane">
                 <h1>Operator Stats</h1>
                 @foreach($player->getOperators() as $operator)
                     <div class="panel-body hover" data-toggle="collapse" data-target="#collapse{{$operator->getLCaseName()}}">   
@@ -201,11 +202,15 @@
                 @endforeach
             </div>
 
-            <div id="rankedStats" class="tab-pane">
+            <div id="rankedTab" class="tab-pane">
                 <h2>Ranked</h2>
                 <p>stuff</p>
             </div>
             
+            <div id="weaponsTab" class="tab-pane">
+                <h2>Weapons</h2>
+                <p>stuff</p>
+            </div>
         </div>
     <div>
 </div>
