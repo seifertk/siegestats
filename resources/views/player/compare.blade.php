@@ -21,14 +21,24 @@
 
                     <div class="row">
                         <div class="col-sm-5">
-                            <h2>{{$compareData[$player1IDX]["name"]}}</h2>
+                            <a href="{{route('profile', ['id' => $compareData[$player1IDX]["uplay_id"]])}}">
+                                <h1>
+                                    <u>{{$compareData[$player1IDX]["name"]}}</u>
+                                </h1>
+                            </a>    
+                            <img id="avatar" src="{{siegestats_avatar_link($compareData[$player1IDX]["uplay_id"])}}"/>
                         </div>
                         <div class="col-sm-2">
-                            <h1>VS</h1>
+                            <h2>VS</h2>
                         </div>
 
                         <div class="col-sm-5">
-                            <h2>{{$compareData[$player2IDX]["name"]}}</h2>
+                            <a href="{{route('profile', ['id' => $compareData[$player2IDX]["uplay_id"]])}}">
+                                <h1>
+                                    <u>{{$compareData[$player2IDX]["name"]}}</u>
+                                </h1>
+                            </a>    
+                            <img id="avatar" src="{{siegestats_avatar_link($compareData[$player2IDX]["uplay_id"])}}"/>
                         </div>
                     </div>
 
@@ -40,7 +50,7 @@
                     <div class="col-sm-12 collapse" id="coreStats">
                         <!--Player clearance level-->
                         <div class="row">
-                            <div class="col-sm-5">
+                            <div id="player-level-container" class="col-sm-5">
                                 {{$compareData[$player1IDX]["level"]}}
                             </div>
                             <div class="col-sm-2">
@@ -249,7 +259,7 @@
                     </div>
 
                     <div class="col-sm-12 btn" type="button" aria-expanded="true" aria-controls="miscStats" data-toggle="collapse" data-target="#miscStats">
-                        <h3><u>MISC</u></h3>
+                        <h3><u>MISCELLANEOUS</u></h3>
                     </div>
 
                     <!--Show the misc stats fields of both players-->

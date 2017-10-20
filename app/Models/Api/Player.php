@@ -123,6 +123,7 @@ class Player extends ApiModel
         //general stats
         $name = $this->getName();
         $level = $this->getLevel();
+        $uplay_id = $this->getId();
         $timePlayed = $this->toTimeString($general->getTimePlayed());
         $wlRatio = $general->getWinLossRatio();
         $kdRatio = $general->getKillDeathRatio();
@@ -152,12 +153,12 @@ class Player extends ApiModel
         $blindKills = $general->getBlindKills();
         $penetrationKills = $general->getPenetrationKills();
 
-        $array = array($name, $level, $timePlayed, $wlRatio, $kdRatio, $matchesPlayed, 
+        $array = array($name, $uplay_id, $level, $timePlayed, $wlRatio, $kdRatio, $matchesPlayed, 
             $casualKills, $casualDeaths, $casualWLRatio, $casualKDRatio, $casualTimePlayed, 
             $rankedKills, $rankedDeaths, $rankedWLRatio, $rankedKDRatio, $rankedTimePlayed,
             $bulletsFired, $bulletsHit, $gadgetsDestroyed, $headshot, $meleeKills, $suicides, $blindKills, $penetrationKills);
 
-        return compact("name", "level", "timePlayed", "wlRatio", "kdRatio", "matchesPlayed", 
+        return compact("name", "uplay_id", "level", "timePlayed", "wlRatio", "kdRatio", "matchesPlayed", 
             "casualKills", "casualDeaths", "casualWLRatio", "casualKDRatio", "casualTimePlayed", 
             "rankedKills", "rankedDeaths", "rankedWLRatio", "rankedKDRatio", "rankedTimePlayed", 
             "bulletsFired", "bulletsHit", "gadgetsDestroyed", "headshot", "meleeKills", "suicides", "blindKills", "penetrationKills",
