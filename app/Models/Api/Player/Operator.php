@@ -25,7 +25,14 @@ class Operator extends ApiModel
 
     protected function getStat(string $stat)
     {
-        return $this->get("stats.operator.{$this->name}.{$stat}");
+        $key = "stats.operator.{$this->name}.{$stat}";
+
+        // when operators are not played, they can lack data
+        if (array_key_exists($key, $this->data))  {
+            return $this->get($key);
+        }
+
+        return null;
     }
 
     public function getName()
@@ -33,70 +40,39 @@ class Operator extends ApiModel
         return $this->getStat('name');
     }
 
-    protected function checkKey(string $stat)
-    {
-        if(array_key_exists("stats.operator.{$this->name}.{$stat}", $this->data))
-            return true;
-        else
-            return false;
-    }
-
     public function getWon()
     {
-        if($this->checkKey("won"))
-            return $this->getStat('won');
-        else
-            return 0;
+        return $this->getStat('won');
     }
-    
 
     public function getLost()
     {
-        if($this->checkKey("lost"))
-            return $this->getStat('lost');
-        else
-            return 0;
+        return $this->getStat('lost');
     }
 
     public function getKills()
     {
-        if($this->checkKey("kills"))
-            return $this->getStat('kills');
-        else
-            return 0;
+        return $this->getStat('kills');
     }
 
     public function getDeaths()
     {
-        if($this->checkKey("deaths"))
-            return $this->getStat('deaths');
-        else
-            return 0;
+        return $this->getStat('deaths');
     }
 
     public function getTimePlayed()
     {
-        if($this->checkKey("timePlayed"))
-            return $this->toTimeString($this->getStat('timePlayed'));
-        else
-            return 0;
+        return $this->getStat('timePlayed');
     }
 
     public function getWinLossRatio()
     {
-        $total = $this->getWon() + $this->getLost();
-        if($total > 0)
-            return $this->getWon() / ($this->getWon() + $this->getLost());
-        else
-            return 0;
+        return $this->getRatio($this->getWon(), $this->getLost());
     }
 
     public function getKillDeathRatio()
     {
-        if($this->getDeaths() > 1)
-            return $this->getKills() / $this->getDeaths();
-        else
-            return $this->getKills();
+        return $this->getRatio($this->getKills(), $this->getDeaths());
     }
 
     protected function getStatProgression(string $stat)

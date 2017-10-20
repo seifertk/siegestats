@@ -70,7 +70,11 @@ class Player extends ApiModel
 
     public function getOperator(string $operator)
     {
-        return new Operator($operator, $this);
+        if (!array_key_exists($operator, $this->stats)) {
+            $this->stats[$operator] = new Operator($operator, $this);
+        }
+
+        return $this->stats[$operator];
     }
 
     public function getCreatedAt()
@@ -102,48 +106,9 @@ class Player extends ApiModel
 
     public function getOperators()
     {
-        $names = [
-            "ash",
-            "bandit",
-            "blackbeard",
-            "blitz",
-            "buck",
-            "capitao",
-            "castle",
-            "caveira",
-            "doc",
-            "echo",
-            "ela",
-            "frost",
-            "fuze",
-            "glaz",
-            "hibana",
-            "iq",
-            "jackal",
-            "jager",
-            "kapkan",
-            "lesion",
-            "mira",
-            "montagne",
-            "mute",
-            "pulse",
-            "rook",
-            "sledge",
-            "smoke",
-            "tachanka",
-            "thatcher",
-            "thermite",
-            "twitch",
-            "valkyrie",
-            "ying"
-        ];
-
-        $operators = [];
-        foreach($names as $n) {
-            $operators[] = new Operator($n, $this);
-        }
-        ksort($operators);
-        return $operators;
+        return array_map(function ($name) {
+            return $this->getOperator($name);
+        }, config('operators'));
     }
 
     public function getCompare()
