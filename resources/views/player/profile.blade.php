@@ -7,7 +7,7 @@
 <div class="panel panel-default">
     <div id="profile-head">
         <div id="profile-img">
-            <img id="avatar" src="http://uplay-avatars.s3.amazonaws.com/{{ $player->getId() }}/default_146_146.png"/>
+            <img id="avatar" src="{{siegestats_avatar_link($player->getId())}}"/>
         </div>
 
         <div id="profile-stats">
