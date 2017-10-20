@@ -193,12 +193,12 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    Win Ratio: {{number_format($operator->getWinLossRatio() * 100,2,'.','')}}%
+                                    Win Ratio: {{number_format($operator->getWinLossRatio(),2,'.','')}}
                                     
                                 </div>
 
                                 <div class="col-sm-2">
-                                    K/D Ratio: {{number_format($operator->getKillDeathRatio(),2,'.','')}}%
+                                    K/D Ratio: {{number_format($operator->getKillDeathRatio(),2,'.','')}}
                                 </div>
 
                                 <!--Time is in seconds. Convert to hours with seconds appended--> 
