@@ -19,6 +19,15 @@
                     <p id="player-level">{{ $player->getLevel() }}</p>
                     <img id="clearance-border" src="/img/clearance-border.svg"/>
                 </div>
+                <div id="quickCompare" class="row">
+                    @if($user && ($user->uplay_id !== $player->getId()))
+                        {!! Form::open(['route' => 'compare', 'method' => 'post', 'id' => 'form-compare', 'class' => 'form-horizontal transparent']) !!}
+                    
+                            {!! Form::hidden('player_id', $player->getId()) !!}
+                            {!! Form::submit('Quick Compare', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -158,13 +167,6 @@
                         </div>
                     </div>
                 </div>
-                @if($user && ($user->uplay_id !== $player->getId()))
-                    {!! Form::open(['route' => 'compare', 'method' => 'post', 'id' => 'form-compare', 'class' => 'form-horizontal transparent']) !!}
-                
-                        {!! Form::hidden('player_id', $player->getId()) !!}
-                        {!! Form::submit('Quick Compare', ['class' => 'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-                @endif
             </div>
 
             <div id="operatorsTab" class="tab-pane">
