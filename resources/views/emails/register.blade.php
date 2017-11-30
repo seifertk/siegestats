@@ -19,7 +19,7 @@
             <p>    
                 Please complete your registration for {{config('app.name')}} by following the link below:
             </p>
-            <a href="{{route('register.complete', ['token' => $token->token])}}">{{route('register.complete', ['token' => $token->token])}}</a>
+            <a href="{{route('register.create', ['token' => $token->token])}}">{{route('register.complete', ['token' => $token->token])}}</a>
         </div>
     </body>
 </html>
