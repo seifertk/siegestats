@@ -11,6 +11,10 @@
 |
 */
 Auth::routes();
+// override register to provide token
+Route::get('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+Route::get('/register/{tokenString}', ['as' => 'register.create', 'uses' => 'Auth\RegisterController@createUser']);
+Route::post('/register/complete', ['as' => 'register.complete', 'uses' => 'Auth\RegisterController@completeRegistration']);
 
 Route::get('/', function () {
     return view('index');
