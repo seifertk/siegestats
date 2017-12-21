@@ -141,9 +141,17 @@ video#bg_vid {
     padding-bottom:0.5rem;
     padding-top:0.5rem;
 
+    .player-index-placement {
+        float: left;
+        margin-right: 2rem;
+        text-align: center;
+        font-size: 5rem;
+        font-weight: 800;
+    }
+
     .player-index-item-img {
         float:left;
-        margin-right:2rem;
+        margin-right:1rem;
         width:$avatar-dimension;
         height:$avatar-dimension;
     }
@@ -312,4 +320,15 @@ video#bg_vid {
 #quickCompare {
     float:right;
     margin:5%;
+}
+
+/*
+ * Leaderboard css
+ */
+#leaderboard-search {
+    margin-left: 1em;
+}
+
+.leaderboard-input {
+    width: auto;
 }
