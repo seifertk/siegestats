@@ -107,22 +107,24 @@ class ChartBuilder {
             labels: labels,
             datasets: [
                 {
-                    label: "Ranked Net Win/Loss Progression (30 Days)",
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: data
+                    label: "Net Win/Loss",
+                    data: data,
+                    borderColor: "#F00"
                 }
             ]
+        };
 
+        var options = {
+            title: {
+                display: true,
+                text: "30 Day Ranked Net Win/Loss"
+            }
         };
 
         var myNewChart = new Chart(ctx, {
             type: "line", 
-            data: dat
+            data: dat,
+            options: options
         });
     }
 

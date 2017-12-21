@@ -240,7 +240,11 @@
 
             <div id="rankedTab" class="tab-pane">
                 <h2>Ranked</h2>
-                <p>stuff</p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <canvas id="rankedProgressionCanvas"></canvas>
+                    </div>
+                </div>
             </div>
             
             <div id="weaponsTab" class="tab-pane">
