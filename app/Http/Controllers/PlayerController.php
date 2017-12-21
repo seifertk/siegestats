@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Api\R6db;
 use App\Models\Api\Player;
 use App\Models\Analytics\AnalyticsBuilder;
+use App\Models\Analytics\ChartBuilder;
 use Auth;
 use Session;
 
 class PlayerController extends Controller 
 {
+    private $chartBuilder;
+
+    public function __construct(ChartBuilder $cb)
+    {
+        $this->chartBuilder = $cb;
+    }
+
     /**
      * Searches for players by name and platform and 
      * shows player(s) that match criteria
@@ -54,7 +62,13 @@ class PlayerController extends Controller
 
         if ($id) {
             $player = new Player(R6db::getPlayer($id));
-            return view('player.profile', compact('player', 'user'));
+            $charts = [
+                'killsPerDayLineChart' => $this->chartBuilder->killsPerDayLineChart($player),
+                'winsPerDayLineChart' => $this->chartBuilder->winsPerDayLineChart($player),
+                'killProgressionLineChart' => $this->chartBuilder->killProgressionLineChart($player),
+                'winProgressionLineChart' => $this->chartBuilder->winProgressionLineChart($player),
+            ];
+            return view('player.profile', compact('player', 'user', 'charts'));
         }
         
         return redirect()->back()->withError('No linked profile found');
