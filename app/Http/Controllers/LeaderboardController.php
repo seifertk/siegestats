@@ -13,6 +13,9 @@ class LeaderboardController extends Controller
         $stat = $request->input('stat');
         $platform = $request->input('platform');
 
+        if (is_null($stat) || is_null($platform)) {
+            return view('leaderboard', ['players' => []]);
+        }
         $results = json_decode(R6db::getLeaderboard($stat, $platform));
 
         // +"id": "7925e347-b18a-4c63-bd86-fc02c2af8d89"
