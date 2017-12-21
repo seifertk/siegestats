@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Api\R6db;
 use App\Models\Api\Player;
+use App\Models\Analytics\AnalyticsBuilder;
 use Auth;
 use Session;
 
@@ -94,6 +95,9 @@ class PlayerController extends Controller
         $player1 = new Player(R6db::getPlayer(Auth::user()->uplay_id));
         $player2 = new Player(R6db::getPlayer($request->get('player_id')));
 
+        //data and labels provided from AnalyticsBuilder, required for chart generation
+        list($casualData, $rankedData, $labels) = AnalyticsBuilder::comparePlayersAnalytics($player1, $player2);
+        
         $players = array($player1, $player2);
         $compareData = array();
 
@@ -103,6 +107,6 @@ class PlayerController extends Controller
             $compareData[] = $players[$i]->getCompare();
         }
 
-        return view('player.compare', compact('compareData'));
+        return view('player.compare', compact('compareData', 'casualData', 'rankedData', 'labels'));
     }
 }

@@ -184,6 +184,12 @@
                                 {{$compareData[$player2IDX]["casualTimePlayed"]}}
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <canvas id="casualCompareCanvas"></canvas>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-sm-12 btn" type="button" aria-expanded="true" aria-controls="mpRanked" data-toggle="collapse" data-target="#mpRanked">
@@ -254,6 +260,12 @@
                             </div>
                             <div class="col-sm-5">
                                 {{$compareData[$player2IDX]["rankedTimePlayed"]}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <canvas id="rankedCompareCanvas"></canvas>
                             </div>
                         </div>
                     </div>
@@ -352,10 +364,20 @@
                                 {{$compareData[$player2IDX]["penetrationKills"]}}
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    var chartBuilder = new ChartBuilder();
+    var casualData = <?php echo json_encode($casualData) ?>;
+    var rankedData = <?php echo json_encode($rankedData) ?>;
+    var labels = <?php echo json_encode($labels) ?>;
+
+    chartBuilder.buildPlayerCompareCasual(casualData, labels);
+    chartBuilder.buildPlayerCompareRanked(rankedData, labels);
 @endsection
