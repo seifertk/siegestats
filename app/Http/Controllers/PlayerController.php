@@ -109,4 +109,20 @@ class PlayerController extends Controller
 
         return view('player.compare', compact('compareData', 'casualData', 'rankedData', 'labels'));
     }
+
+    /**
+     * Retreives the currently logged in users net win/loss in ranked for the past 30 days
+     * 
+     * @param (none)
+     * @return view \player\progressions.blade.php
+     */
+    public function getRankedWinLossProgression()
+    {
+        $player = new Player(R6db::getPlayer(Auth::user()->uplay_id));
+
+        //data and labels provided from AnalyticsBuilder, required for chart generation
+        list($rankedProgression, $labels) = AnalyticsBuilder::rankedProgressionAnalytics($player);
+
+        return view('player.progressions', compact('rankedProgression', 'labels'));
+    }
 }

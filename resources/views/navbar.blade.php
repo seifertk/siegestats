@@ -18,6 +18,7 @@
                 <li><a href="{{ route('news.index') }}">News</a></li>
                 @if(Auth::user())
                     <li><a href="{{ route('profile') }}?id={{Auth::user()->uplay_id}}">My Profile</a></li>
+                    <li><a href="{{ route('progressions') }}">My Progression</a></li>
                 @endif
             </ul>
         </div>    

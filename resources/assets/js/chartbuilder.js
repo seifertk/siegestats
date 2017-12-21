@@ -93,6 +93,39 @@ class ChartBuilder {
         });
     }
 
+    /**
+     * Function that takes in a players 'ranked' net win/loss data and creates a 'line' chart
+     * @param {Array} data - players net win/loss for past 30 days
+     * @param {Array} labels - name of the labels being used on the chart
+     */
+    buildPlayerRankedProgression(data, labels)
+    {
+        var canvas = document.getElementById("rankedProgressionCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var dat = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Ranked Net Win/Loss Progression (30 Days)",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: data
+                }
+            ]
+
+        };
+
+        var myNewChart = new Chart(ctx, {
+            type: "line", 
+            data: dat
+        });
+    }
+
 }
 
 window.ChartBuilder = ChartBuilder;

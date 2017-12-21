@@ -40,4 +40,32 @@ class AnalyticsBuilder
         
         return array($casualData, $rankedData, $labels);
     }
+
+    /**
+     * Function used to generate net win/loss data for the logged in user for the past 30 days 
+     * that is needed for chart generation
+     * 
+     * @param Player $player
+     * @return array
+     */
+    public static function rankedProgressionAnalytics($player)
+    {
+        $ranked = Stat::make("ranked", $player);
+        
+        $won = array_reverse($ranked->getWonProgression());
+        $lost = array_reverse($ranked->getLostProgression());
+
+        $netWinLoss = array();
+        $labels = array();
+        //We set the first day of the period to 0 since we don't have a previous data point
+        $netWinLoss[] = 0;
+
+        for($i = 1;$i < count($won); ++$i)
+        {
+            //subtract the difference of losses from the difference of wins between the day before and the current calculated day
+            $netWinLoss[] = ($won[$i] - $won[$i-1]) - ($lost[$i] - $lost[$i-1]);
+            $labels[] = $i;
+        }
+        return array($netWinLoss, $labels);
+    }
 }
