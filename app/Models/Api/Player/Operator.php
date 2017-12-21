@@ -77,7 +77,7 @@ class Operator extends ApiModel
 
     protected function getStatProgression(string $stat)
     {
-        return array_values(array_filter($this->data, function ($key) {
+        return array_values(array_filter($this->data, function ($key) use ($stat) {
             return strpos($key, 'progressions') !== false
                 && strpos($key, $stat) !== false;
         }, ARRAY_FILTER_USE_KEY));
@@ -105,6 +105,6 @@ class Operator extends ApiModel
 
     public function getTimePlayedProgression()
     {
-        return $this->getTimePlayedProgression();
+        return $this->getStatProgression('timePlayed');
     }
 }
