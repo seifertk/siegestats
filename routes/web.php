@@ -29,6 +29,12 @@ Route::get('/versions', function() {
     return view('versions');
 })->name('versions');
 
+Route::get('/leaderboard', function() {
+    return view('leaderboard', ['players' => []]);
+})->name('leaderboard');
+
+Route::post('/leaderboard/search', 'LeaderboardController@getLeaderboard')->name('leaderboard.search');
+
 Route::get('/player/operatorstats', 'PlayerController@operatorStats')->name('operatorstats');
 Route::get('/player/{id?}', 'PlayerController@show')->name('profile');
 Route::get('/search', 'PlayerController@search')->name('search');

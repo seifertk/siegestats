@@ -10,6 +10,7 @@ return [
     "castle",
     "caveira",
     "doc",
+    "dokkaebi",
     "echo",
     "ela",
     "frost",
@@ -33,5 +34,7 @@ return [
     "thermite",
     "twitch",
     "valkyrie",
-    "ying"
+    "vigil",
+    "ying",
+    "zofia",
 ];

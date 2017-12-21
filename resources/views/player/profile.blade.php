@@ -167,6 +167,30 @@
                         </div>
                     </div>
                 </div>
+                    <div>
+                    <canvas id="winsPerDayCanvas"></canvas>
+                    <script id="winsPerDayJson" type="applicaton/json">
+                        {!! $charts['winsPerDayLineChart'] !!}
+                    </script>
+                </div>
+                <div>
+                    <canvas id="killsPerDayCanvas"></canvas>
+                    <script id="killsPerDayJson" type="applicaton/json">
+                        {!! $charts['killsPerDayLineChart'] !!}
+                    </script>
+                </div>
+                <div>
+                    <canvas id="winProgressionCanvas"></canvas>
+                    <script id="winProgressionJson" type="applicaton/json">
+                        {!! $charts['winProgressionLineChart'] !!}
+                    </script>
+                </div>                 
+                <div>
+                    <canvas id="killProgressionCanvas"></canvas>
+                    <script id="killProgressionJson" type="applicaton/json">
+                        {!! $charts['killProgressionLineChart'] !!}
+                    </script>
+                </div>
             </div>
 
             <div id="operatorsTab" class="tab-pane">
@@ -226,7 +250,6 @@
         </div>
     <div>
 </div>
-
 @endsection
 
 @section('scripts')
@@ -234,4 +257,12 @@
     e.preventDefault()
     $(this).tab('show')
     }).first().tab('show');
+
+    $(document).ready(function () {
+        new Chart($('#killProgressionCanvas'), JSON.parse($('#killProgressionJson').text()));
+        new Chart($('#winProgressionCanvas'), JSON.parse($('#winProgressionJson').text()));
+        new Chart($('#winsPerDayCanvas'), JSON.parse($('#winsPerDayJson').text()));
+        new Chart($('#killsPerDayCanvas'), JSON.parse($('#killsPerDayJson').text()));
+    });
+    
 @endsection

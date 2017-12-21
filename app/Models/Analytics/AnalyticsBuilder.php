@@ -3,9 +3,20 @@
 namespace App\Models\Analytics;
 
 use App\Models\Api\Player\Stat;
+use App\Models\Api\Player;
+use App\Models\Api\Player\Operator;
 
 class AnalyticsBuilder
 {
+    /**
+     * Returns all abailable operators in the game.
+     *
+     * @return array
+     */
+    private function getOperators() : array
+    {
+        return config('operators');
+    }
     
     /**
     * Function used to generate comparision data between 2 players that is needed for chart creation
@@ -68,4 +79,67 @@ class AnalyticsBuilder
         }
         return array($netWinLoss, $labels);
     }
+
+     /** Returns an array of all operator stat objects for the passed player.
+     *
+     * @param Player $player
+     * @return array Array of operators
+     */
+    private function getPlayerOperators(Player $player) : array
+    {
+        return array_map(function (string $operator) use ($player) {
+            return $player->getOperator($operator);
+        }, $this->getOperators());
+    }
+
+    /**
+     * Get an array of operators sorted by the delta of a progression stat.
+     *
+     * @param Player $player
+     * @param string $fnCall A method name that returns a progressive stat array
+     * @return array Operators sorted by the progression stat delta
+     */
+    private function getOperatorProgression(Player $player, string $fnCall) : array
+    {
+        // get all of the player operators
+        $operators = $this->getPlayerOperators($player);
+
+        // sort them by the delta of the fnCall array
+        // for example, passing 'timePlayed' will sort the operators by the delta
+        // of timePlayed over the last 30 days
+        usort($operators, function(Operator $lhs, Operator $rhs) use ($fnCall) {
+            $lprog = $lhs->{$fnCall}();
+            $rprog = $rhs->{$fnCall}();
+            $ldiff = end($lprog) - reset($lprog);
+            $rdiff = end($rprog) - reset($rprog);
+            return $ldiff <=> $rdiff;          
+        });
+
+        return $operators;
+    }
+
+    public function operatorTimePlayedProgression(Player $player) : array
+    {
+        return $this->getOperatorProgression($player, 'getTimePlayedProgression');
+    }
+
+    public function operatorKillProgression(Player $player) : array
+    {
+        return $this->getOperatorProgression($player, 'getKillsProgression');
+    }
+
+    public function operatorDeathProgression(Player $player) : array
+    {
+        return $this->getOperatorProgression($player, 'getDeathsProgression');
+    }    
+
+    public function operatorWinProgression(Player $player) : array
+    {
+        return $this->getOperatorProgression($player, 'getWonProgression');
+    }
+
+    public function operatorLossProgression(Player $player) : array
+    {
+        return $this->getOperatorProgression($player, 'getLostProgression');
+    }    
 }
