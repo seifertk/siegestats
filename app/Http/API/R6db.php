@@ -47,8 +47,10 @@ class R6db
     /**
      *  Testing the route manually is getting me nothing
      */
-    public static function getLeaderboard()
+    public static function getLeaderboard(string $stat, string $platform)
     {
-        //
+        return Cache::remember("r6db_leaderaboard_${stat}_${platform}", static::CACHE_TIME, function() use ($stat, $platform) {
+            return static::fetchJson(static::URL . "/leaderboards?stat=${stat}&platform=${platform}", static::HEADERS);
+        });
     }
 }
