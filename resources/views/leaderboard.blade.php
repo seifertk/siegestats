@@ -35,7 +35,9 @@
                     {{$player->placement}}
                 </div>
                 <div class="player-index-item-img">
-                    <img src="{{siegestats_avatar_link($player->id)}}" alt="{{$player->name}}"/>
+                    <a href="{{route('profile', ['id' => $player->id])}}">
+                        <img src="{{siegestats_avatar_link($player->id)}}" alt="{{$player->name}}"/>
+                    </a>
                 </div>
                 <div class="player-index-item-block">
                     <h1>{{$player->name}}</h2>
