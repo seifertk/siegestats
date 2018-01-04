@@ -26,6 +26,11 @@
                             {!! Form::hidden('player_id', $player->getId()) !!}
                             {!! Form::submit('Quick Compare', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
+                        {!! Form::open(['route' => 'link', 'method' => 'post', 'id'=>'form-link', 'class' => 'form-horizontal transparent']) !!}
+                            {!! Form::hidden('player_id', $player->getId()) !!}
+                            {!! Form::hidden('player_name', $player->getName()) !!}
+                            {!! Form::submit('Link This Account', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
                     @endif
                 </div>
             </div>
