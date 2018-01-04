@@ -13,6 +13,29 @@
                 </div>
                 <hr/>
 
+                <!--Version 0.3-->
+                <div class="panel-body">
+                    <h3>Version 0.3</h3> - <h4>January 4th, 2018</h4>
+                    <p>To start off 2018, we want to welcome Siege Stats v0.3! We have added new and exciting functionality to our site! The 
+                        following has been added: 
+                    </p></br>
+                    <ul>
+                        <li>Player Analytics Engine</li>
+                        <li>Platform Leaderboards w/ Skill Rating</li>
+                        <li>Ranked Win/Loss Statistics</li>
+                        <li>30-Day Progression Charts</li>
+                        <li>Style Update</li>
+                    </ul></br>
+                    <p>
+                        Players are now able to view the 30-Day progression data of every Rainbow Six Siege™ player, including themselves. 
+                        This is all due to our internal, Player Analytics Engine. It provides valuable data on every player and gives players
+                        a deeper insight to their skill rating and what they can do to get an advantage on their opponents. Players can now see
+                        their ranked win/loss ratio for the past 30 days and make the appropriate adjustments to their gameplay.
+                        The intent of this change was to provide players with a sense of pride and accomplishment for their hard earned money. 
+                        Skills. We meant skills...
+                    </p>
+                </div>
+
                 <!--Version 0.2-->
                 <div class="panel-body">
                     <h3>Version 0.2</h3> - <h4>October 19th, 2017</h4>
