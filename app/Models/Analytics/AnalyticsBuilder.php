@@ -52,8 +52,7 @@ class AnalyticsBuilder
         return array($casualData, $rankedData, $labels);
     }
 
-    /**
-     * Returns an array of all operator stat objects for the passed player.
+     /** Returns an array of all operator stat objects for the passed player.
      *
      * @param Player $player
      * @return array Array of operators

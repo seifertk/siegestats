@@ -93,6 +93,31 @@ class ChartBuilder
         return (new LineChart)->labels($dates)->title($title)->datasets($datasets);
     }
 
+    private function progressionWinLossLineChart(Player $player, string $title, string $fnName) : LineChart
+    {
+        $ranked = $player->getStats(Stat::RANKED)->{$fnName}();
+
+        $dates = array_reverse(array_map(function ($number) {
+            return Carbon::now()->subdays($number)->format('Y-m-d'); 
+        }, range(0, count($ranked))));
+
+        $datasets = [
+            [
+                'label' => 'Ranked',
+                'data' => $ranked,
+                'fill' => false,
+                'borderColor' => '#F00'
+            ],
+        ];     
+
+        return (new LineChart)->labels($dates)->title($title)->datasets($datasets);
+    }
+
+    public function netWinLossProgressionLineChart(Player $player) : LineChart
+    {
+        return $this->progressionWinLossLineChart($player, 'Net Win/Loss 30 Days', 'getNetWinLossProgression');
+    }
+
     public function winProgressionLineChart(Player $player) : LineChart
     {
         return $this->progressionLineChart($player, 'Wins Last 30 Days', 'getWonProgression');

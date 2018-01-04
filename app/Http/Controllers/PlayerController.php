@@ -67,6 +67,7 @@ class PlayerController extends Controller
                 'winsPerDayLineChart' => $this->chartBuilder->winsPerDayLineChart($player),
                 'killProgressionLineChart' => $this->chartBuilder->killProgressionLineChart($player),
                 'winProgressionLineChart' => $this->chartBuilder->winProgressionLineChart($player),
+                'netWinLossProgressionLineChart' => $this->chartBuilder->netWinLossProgressionLineChart($player),
             ];
             return view('player.profile', compact('player', 'user', 'charts'));
         }

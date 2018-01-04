@@ -92,7 +92,6 @@ class ChartBuilder {
             options: options
         });
     }
-
 }
 
 window.ChartBuilder = ChartBuilder;

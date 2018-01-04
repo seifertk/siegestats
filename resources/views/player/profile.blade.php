@@ -26,6 +26,11 @@
                             {!! Form::hidden('player_id', $player->getId()) !!}
                             {!! Form::submit('Quick Compare', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
+                        {!! Form::open(['route' => 'link', 'method' => 'post', 'id'=>'form-link', 'class' => 'form-horizontal transparent']) !!}
+                            {!! Form::hidden('player_id', $player->getId()) !!}
+                            {!! Form::hidden('player_name', $player->getName()) !!}
+                            {!! Form::submit('Link This Account', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
                     @endif
                 </div>
             </div>
@@ -33,7 +38,12 @@
 
         <div id="profile-nav">
             <ul class="nav nav-tabs navbar-right">
-                <li class="active"><a data-toggle="tab" href="#overviewTab">Player</a></li>
+                <li class="active">
+                    <a data-toggle="tab" href="#overviewTab">
+                        Player
+                        <img id="navPlayer" src="/img/player_icon.png"/>
+                    </a>
+                </li>
                 <li>
                     <a data-toggle="tab" href="#operatorsTab">
                         Operators
@@ -49,7 +59,7 @@
                 <li>
                     <a data-toggle="tab" href="#weaponsTab">
                         Weapons
-                        
+                        <img id="navWeapon" src="/img/target_icon.png"/>
                     </a>
                 </li>
             </ul>
@@ -240,7 +250,14 @@
 
             <div id="rankedTab" class="tab-pane">
                 <h2>Ranked</h2>
-                <p>stuff</p>
+                <div class="row">
+                    <div class="col-sm-12">
+                    <canvas id="netWinLossCanvas"></canvas>
+                    <script id="netWinLossJson" type="applicaton/json">
+                        {!! $charts['netWinLossProgressionLineChart'] !!}
+                    </script>
+                    </div>
+                </div>
             </div>
             
             <div id="weaponsTab" class="tab-pane">
@@ -263,6 +280,7 @@
         new Chart($('#winProgressionCanvas'), JSON.parse($('#winProgressionJson').text()));
         new Chart($('#winsPerDayCanvas'), JSON.parse($('#winsPerDayJson').text()));
         new Chart($('#killsPerDayCanvas'), JSON.parse($('#killsPerDayJson').text()));
+        new Chart($('#netWinLossCanvas'), JSON.parse($('#netWinLossJson').text()));
     });
     
 @endsection
