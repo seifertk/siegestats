@@ -78,4 +78,20 @@ trait MatchType
     {
         return $this->getStatProgression('won');
     }      
+
+    public function getNetWinLossProgression(){
+        $won = array_reverse($this->getWonProgression());
+        $loss = array_reverse($this->getLostProgression());
+
+        $netWinLoss = array();
+        //We set the first day of the period to 0 since we don't have a previous data point
+        $netWinLoss[] = 0;
+
+        for($i = 1;$i < count($won); ++$i)
+        {
+            //subtract the difference of losses from the difference of wins between the day before and the current calculated day
+            $netWinLoss[] = ($won[$i] - $won[$i-1]) - ($loss[$i] - $loss[$i-1]);
+        }
+        return $netWinLoss;
+    }
 }

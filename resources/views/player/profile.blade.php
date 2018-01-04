@@ -242,7 +242,10 @@
                 <h2>Ranked</h2>
                 <div class="row">
                     <div class="col-sm-12">
-                        <canvas id="rankedProgressionCanvas"></canvas>
+                    <canvas id="netWinLossCanvas"></canvas>
+                    <script id="netWinLossJson" type="applicaton/json">
+                        {!! $charts['netWinLossProgressionLineChart'] !!}
+                    </script>
                     </div>
                 </div>
             </div>
@@ -267,6 +270,7 @@
         new Chart($('#winProgressionCanvas'), JSON.parse($('#winProgressionJson').text()));
         new Chart($('#winsPerDayCanvas'), JSON.parse($('#winsPerDayJson').text()));
         new Chart($('#killsPerDayCanvas'), JSON.parse($('#killsPerDayJson').text()));
+        new Chart($('#netWinLossCanvas'), JSON.parse($('#netWinLossJson').text()));
     });
     
 @endsection
