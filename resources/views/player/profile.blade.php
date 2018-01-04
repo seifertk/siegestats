@@ -38,7 +38,12 @@
 
         <div id="profile-nav">
             <ul class="nav nav-tabs navbar-right">
-                <li class="active"><a data-toggle="tab" href="#overviewTab">Player</a></li>
+                <li class="active">
+                    <a data-toggle="tab" href="#overviewTab">
+                        Player
+                        <img id="navPlayer" src="/img/player_icon.png"/>
+                    </a>
+                </li>
                 <li>
                     <a data-toggle="tab" href="#operatorsTab">
                         Operators
@@ -54,7 +59,7 @@
                 <li>
                     <a data-toggle="tab" href="#weaponsTab">
                         Weapons
-                        
+                        <img id="navWeapon" src="/img/target_icon.png"/>
                     </a>
                 </li>
             </ul>

@@ -42,4 +42,3 @@ Route::post('/search', 'PlayerController@search')->name('search');
 Route::post('/player/link', 'UserController@link')->name('link');
 Route::post('/player/compare', 'PlayerController@comparePlayers')->name('compare');
 Route::get('/news', 'NewsController@getNews')->name('news.index');
-Route::get('/progressions', 'PlayerController@getRankedWinLossProgression')->name('progressions');
