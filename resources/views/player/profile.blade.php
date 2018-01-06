@@ -262,7 +262,7 @@
             
             <div id="weaponsTab" class="tab-pane">
                 <h2>Weapons</h2>
-                <p>stuff</p>
+                <p>COMING SOON</p>
             </div>
         </div>
     <div>
