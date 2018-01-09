@@ -9,10 +9,12 @@ use App\Models\Analytics\AnalyticsBuilder;
 use App\Models\Analytics\ChartBuilder;
 use Auth;
 use Session;
+use Illuminate\Support\Facades\Cache;
 
 class PlayerController extends Controller 
 {
     private $chartBuilder;
+    const CACHE_TIME = 15;
 
     public function __construct(ChartBuilder $cb)
     {
@@ -49,6 +51,22 @@ class PlayerController extends Controller
         return redirect()->route('profile', ['id' => $id]);
     }
 
+    private function getCharts(Player $player)
+    {
+        return Cache::remember($player->getId() . "-charts", static::CACHE_TIME, function () use ($player) {
+            return  [
+                'killsPerDayLineChart' => $this->chartBuilder->killsPerDayLineChart($player),
+                'winsPerDayLineChart' => $this->chartBuilder->winsPerDayLineChart($player),
+                'killProgressionLineChart' => $this->chartBuilder->killProgressionLineChart($player),
+                'winProgressionLineChart' => $this->chartBuilder->winProgressionLineChart($player),
+                'netWinLossProgressionLineChart' => $this->chartBuilder->netWinLossProgressionLineChart($player),
+                'kdRatioProgressionLineChart' => $this->chartBuilder->kdPerDayLineChart($player),
+                'operatorsKdProgressionLineCharts' => $this->chartBuilder->operatorsKdPerDayLineCharts($player),
+                'operatorsWlProgressionLineCharts' => $this->chartBuilder->operatorsWinLossProgressionLineCharts($player),
+            ];
+        });
+    }
+
     /**
      * Searches for player using user id and shows related player data 
      *
@@ -62,13 +80,7 @@ class PlayerController extends Controller
 
         if ($id) {
             $player = new Player(R6db::getPlayer($id));
-            $charts = [
-                'killsPerDayLineChart' => $this->chartBuilder->killsPerDayLineChart($player),
-                'winsPerDayLineChart' => $this->chartBuilder->winsPerDayLineChart($player),
-                'killProgressionLineChart' => $this->chartBuilder->killProgressionLineChart($player),
-                'winProgressionLineChart' => $this->chartBuilder->winProgressionLineChart($player),
-                'netWinLossProgressionLineChart' => $this->chartBuilder->netWinLossProgressionLineChart($player),
-            ];
+            $charts = $this->getCharts($player);
             return view('player.profile', compact('player', 'user', 'charts'));
         }
         

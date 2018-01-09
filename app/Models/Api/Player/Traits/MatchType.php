@@ -49,6 +49,23 @@ trait MatchType
         return $this->getStat('won');
     }
 
+    private function getRatioProgression(array $lhs, array $rhs)
+    {
+        return array_map(function ($a, $b) {
+            return $b > 0 ? (float)$a / (float)$b : 0;
+        }, $lhs, $rhs);        
+    }
+
+    public function getKillDeathRatioProgression()
+    {
+        return $this->getRatioProgression($this->getKillsProgression(), $this->getDeathsProgression());
+    }
+
+    public function getWinLossRatioProgression()
+    {
+        return $this->getRatioProgression($this->getWonProgression(), $this->getLostProgression());
+    }
+
     public function getDeathsProgression()
     {
         return $this->getStatProgression('deaths');

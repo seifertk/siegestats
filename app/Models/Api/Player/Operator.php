@@ -107,4 +107,21 @@ class Operator extends ApiModel
     {
         return $this->getStatProgression('timePlayed');
     }
+    
+    private function getRatioProgression(array $lhs, array $rhs)
+    {
+        return array_map(function ($a, $b) {
+            return $b > 0 ? (float)$a / (float)$b : 0;
+        }, $lhs, $rhs);        
+    }
+
+    public function getKillDeathRatioProgression()
+    {
+        return $this->getRatioProgression($this->getKillsProgression(), $this->getDeathsProgression());
+    }
+
+    public function getWinLossRatioProgression()
+    {
+        return $this->getRatioProgression($this->getWonProgression(), $this->getLostProgression());
+    }
 }

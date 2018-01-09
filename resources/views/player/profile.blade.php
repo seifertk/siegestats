@@ -177,32 +177,39 @@
                         </div>
                     </div>
                 </div>
-                    <div>
-                    <canvas id="winsPerDayCanvas"></canvas>
-                    <script id="winsPerDayJson" type="applicaton/json">
-                        {!! $charts['winsPerDayLineChart'] !!}
-                    </script>
+                    <div class="row">
+                        <div class="col-md-6 player-stat">
+                            <canvas id="kdRatioPerDayCanvas"></canvas>
+                            <script id="kdRatioPerDayJson" type="applicaton/json">
+                                {!! $charts['kdRatioProgressionLineChart'] !!}
+                            </script>
+                        </div>                    
+                            <div class="col-md-6 player-stat">
+                            <canvas id="winsPerDayCanvas"></canvas>
+                            <script id="winsPerDayJson" type="applicaton/json">
+                                {!! $charts['winsPerDayLineChart'] !!}
+                            </script>
+                        </div>
+                        <div class="col-md-6 player-stat">
+                            <canvas id="killsPerDayCanvas"></canvas>
+                            <script id="killsPerDayJson" type="applicaton/json">
+                                {!! $charts['killsPerDayLineChart'] !!}
+                            </script>
+                        </div>
+                        <div class="col-md-6 player-stat">
+                            <canvas id="winProgressionCanvas"></canvas>
+                            <script id="winProgressionJson" type="applicaton/json">
+                                {!! $charts['winProgressionLineChart'] !!}
+                            </script>
+                        </div>                 
+                        <div class="col-md-6 player-stat">
+                            <canvas id="killProgressionCanvas"></canvas>
+                            <script id="killProgressionJson" type="applicaton/json">
+                                {!! $charts['killProgressionLineChart'] !!}
+                            </script>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <canvas id="killsPerDayCanvas"></canvas>
-                    <script id="killsPerDayJson" type="applicaton/json">
-                        {!! $charts['killsPerDayLineChart'] !!}
-                    </script>
-                </div>
-                <div>
-                    <canvas id="winProgressionCanvas"></canvas>
-                    <script id="winProgressionJson" type="applicaton/json">
-                        {!! $charts['winProgressionLineChart'] !!}
-                    </script>
-                </div>                 
-                <div>
-                    <canvas id="killProgressionCanvas"></canvas>
-                    <script id="killProgressionJson" type="applicaton/json">
-                        {!! $charts['killProgressionLineChart'] !!}
-                    </script>
-                </div>
-            </div>
-
             <div id="operatorsTab" class="tab-pane">
                 <h1>Operator Stats</h1>
                 @foreach($player->getOperators() as $operator)
@@ -210,38 +217,52 @@
                         <img src='{{asset("img/operators/{$operator->getLCaseName()}_badge.png")}}'>                                
                         <h3>{{$operator->getName()}}</h3>
 
-                        <div class="col-sm-12 collapse" id="collapse{{$operator->getLCaseName()}}">
+                            <div class="col-sm-12 collapse" id="collapse{{$operator->getLCaseName()}}">
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        Won: {{$operator->getWon()}}
+                                    </div>
+    
+                                    <div class="col-sm-1">
+                                        Lost: {{$operator->getLost()}}
+                                    </div>
+    
+                                    <div class="col-sm-1">
+                                        Kills: {{$operator->getKills()}}
+                  
+                                    </div>      
+                                    <div class="col-sm-1">
+                                        Deaths: {{$operator->getDeaths()}}
+                                    </div>
+    
+                                    <div class="col-sm-2">
+                                        Win Ratio: {{number_format($operator->getWinLossRatio(),2,'.','')}}
+                                        
+                                    </div>
+    
+                                    <div class="col-sm-2">
+                                        K/D Ratio: {{number_format($operator->getKillDeathRatio(),2,'.','')}}
+                                    </div>
+    
+                                    <!--Time is in seconds. Convert to hours with seconds appended--> 
+                                    <div class="col-sm-3">
+                                        Time Played: {{$operator->getTimePlayedString()}}
+                                    </div> 
+                                 
+                                </div>
                             <div class="row">
-                                <div class="col-sm-1">
-                                    Won: {{$operator->getWon()}}
+                                <div class="col-md-6 player-stat">
+                                    <canvas id="{{$operator->getName()}}KdRatioPerDayCanvas"></canvas>
+                                    <script id="{{$operator->getName()}}KdRatioPerDayJson" type="applicaton/json">
+                                        {!! $charts['operatorsKdProgressionLineCharts'][$loop->index] !!}
+                                    </script>
                                 </div>
-
-                                <div class="col-sm-1">
-                                    Lost: {{$operator->getLost()}}
-                                </div>
-
-                                <div class="col-sm-1">
-                                    Kills: {{$operator->getKills()}}
-              
-                                </div>      
-                                <div class="col-sm-1">
-                                    Deaths: {{$operator->getDeaths()}}
-                                </div>
-
-                                <div class="col-sm-2">
-                                    Win Ratio: {{number_format($operator->getWinLossRatio(),2,'.','')}}
-                                    
-                                </div>
-
-                                <div class="col-sm-2">
-                                    K/D Ratio: {{number_format($operator->getKillDeathRatio(),2,'.','')}}
-                                </div>
-
-                                <!--Time is in seconds. Convert to hours with seconds appended--> 
-                                <div class="col-sm-3">
-                                    Time Played: {{$operator->getTimePlayedString()}}
-                                </div> 
-                             
+                                <div class="col-md-6 player-stat">
+                                    <canvas id="{{$operator->getName()}}WlRatioPerDayCanvas"></canvas>
+                                    <script id="{{$operator->getName()}}WlRatioPerDayJson" type="applicaton/json">
+                                        {!! $charts['operatorsWlProgressionLineCharts'][$loop->index] !!}
+                                    </script>
+                                </div>        
                             </div>
                         </div>
                     </div>
@@ -274,8 +295,13 @@
     e.preventDefault()
     $(this).tab('show')
     }).first().tab('show');
-
+{{--  this is actually terrible  --}}
     $(document).ready(function () {
+        @foreach ($player->getOperators() as $operator)
+            new Chart($('#{{$operator->getName()}}KdRatioPerDayCanvas'), JSON.parse($('#{{$operator->getName()}}KdRatioPerDayJson').text()));
+            new Chart($('#{{$operator->getName()}}WlRatioPerDayCanvas'), JSON.parse($('#{{$operator->getName()}}WlRatioPerDayJson').text()));
+        @endforeach
+        new Chart($('#kdRatioPerDayCanvas'), JSON.parse($('#kdRatioPerDayJson').text()));
         new Chart($('#killProgressionCanvas'), JSON.parse($('#killProgressionJson').text()));
         new Chart($('#winProgressionCanvas'), JSON.parse($('#winProgressionJson').text()));
         new Chart($('#winsPerDayCanvas'), JSON.parse($('#winsPerDayJson').text()));
